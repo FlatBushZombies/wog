@@ -30,17 +30,16 @@ export default async function Home() {
 
   return (
     <>
+      {/* Background rhythm: dark hero -> light -> dark mission panel -> light -> color-block CTA -> dark footer */}
       <Hero upcomingEvent={upcomingEvent} />
       <About />
       <Leadership />
       <FaithBand />
+      <Community />
       <Messages />
       <Ministries />
       <Events />
-      <Community />
-      <div className="px-0 pb-[0.75rem] sm:pb-[1rem]">
-        <VisitCTA />
-      </div>
+      <VisitCTA />
       <Footer />
     </>
   );

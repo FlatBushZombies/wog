@@ -9,8 +9,8 @@ export default async function EventsPage() {
     <div>
       <div className="flex flex-col gap-[1rem] sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-[1.75rem] font-semibold tracking-tight text-ink">Events</h1>
-          <p className="mt-[0.25rem] text-[0.9rem] text-muted">
+          <h1 className="text-h1 text-ink">Events</h1>
+          <p className="text-body-lg mt-[0.25rem] text-muted">
             Create events and track who attends.
           </p>
         </div>

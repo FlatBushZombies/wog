@@ -19,8 +19,8 @@ export default async function EventDetailPage({
       <EventDetailHeader event={event} />
 
       <div>
-        <h2 className="text-[1.1rem] font-semibold tracking-tight text-ink">Attendance</h2>
-        <p className="mt-[0.25rem] text-[0.95rem] text-muted">
+        <h2 className="text-h3 text-ink">Attendance</h2>
+        <p className="text-body mt-[0.25rem] text-muted">
           Check off everyone who attended this event.
         </p>
         <div className="mt-[1rem]">

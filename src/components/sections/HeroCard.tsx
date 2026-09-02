@@ -30,7 +30,7 @@ export function HeroCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "w-full max-w-[21rem] rounded-[1.25rem] border border-white/15 bg-white/10 p-[1.25rem] text-white backdrop-blur-md",
+        "w-full max-w-[21rem] rounded-[0.5rem] border border-white/15 bg-white/10 p-[1.25rem] text-white backdrop-blur-md",
         className
       )}
     >
@@ -47,10 +47,10 @@ export function HeroCard({ className }: { className?: string }) {
             transition={{ type: "spring", stiffness: 260, damping: 22 }}
             className="absolute inset-0 text-left"
           >
-            <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent-light">
+            <p className="text-caption uppercase tracking-[0.1em] text-accent-light">
               {active.label}
             </p>
-            <p className="mt-[0.375rem] text-[1rem] font-medium leading-snug text-white/90">
+            <p className="text-body mt-[0.375rem] font-medium leading-snug text-white/90">
               {active.description}
             </p>
           </motion.button>

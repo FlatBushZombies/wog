@@ -9,10 +9,10 @@ export default function PrivacyPage() {
   return (
     <>
       <main className="shell pb-[5rem] pt-[9rem] sm:pt-[10rem]">
-        <h1 className="text-[2rem] font-semibold tracking-tight text-ink sm:text-[2.75rem]">
+        <h1 className="text-h1 text-ink">
           Privacy Policy
         </h1>
-        <div className="mt-[2rem] flex max-w-[42rem] flex-col gap-[1.25rem] text-[1rem] leading-relaxed text-muted">
+        <div className="text-body-lg mt-[2rem] flex max-w-[42rem] flex-col gap-[1.25rem] text-muted">
           <p>
             {site.fullName} ({site.name}) respects your privacy. This page explains, in plain
             terms, how we handle information shared with us.

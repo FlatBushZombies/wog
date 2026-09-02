@@ -5,7 +5,7 @@ import type { Member } from "@/lib/db/schema";
 import { updateMember, deleteMember } from "@/app/dashboard/(app)/members-actions";
 
 const inputClass =
-  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent";
+  "text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-ink outline-none focus-visible:border-accent";
 
 export function MemberRow({ member }: { member: Member }) {
   const [editing, setEditing] = useState(false);
@@ -17,7 +17,7 @@ export function MemberRow({ member }: { member: Member }) {
           await updateMember(formData);
           setEditing(false);
         }}
-        className="flex flex-col gap-[0.625rem] rounded-[1rem] border border-line bg-surface p-[1rem]"
+        className="flex flex-col gap-[0.625rem] rounded-[0.375rem] border border-line bg-surface p-[1rem]"
       >
         <input type="hidden" name="id" value={member.id} />
         <input type="hidden" name="category" value={member.category} />
@@ -28,13 +28,13 @@ export function MemberRow({ member }: { member: Member }) {
           <input name="notes" defaultValue={member.notes ?? ""} className={inputClass} placeholder="Notes" />
         </div>
         <div className="flex gap-[0.5rem]">
-          <button type="submit" className="rounded-full bg-ink px-[1rem] py-[0.5rem] text-[0.9rem] font-medium text-white">
+          <button type="submit" className="text-caption rounded-[0.4rem] bg-ink px-[1rem] py-[0.5rem] font-medium text-white">
             Save
           </button>
           <button
             type="button"
             onClick={() => setEditing(false)}
-            className="rounded-full border border-line px-[1rem] py-[0.5rem] text-[0.9rem] font-medium text-muted"
+            className="text-caption rounded-[0.4rem] border border-line px-[1rem] py-[0.5rem] font-medium text-muted"
           >
             Cancel
           </button>
@@ -44,19 +44,19 @@ export function MemberRow({ member }: { member: Member }) {
   }
 
   return (
-    <div className="flex flex-col gap-[0.75rem] rounded-[1rem] border border-line bg-white p-[1rem] sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-[0.75rem] rounded-[0.375rem] border border-line bg-white p-[1rem] sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <p className="text-[0.95rem] font-medium text-ink">{member.fullName}</p>
-        <p className="text-[0.9rem] text-muted">
+        <p className="text-body font-medium text-ink">{member.fullName}</p>
+        <p className="text-caption text-muted">
           {[member.email, member.phone].filter(Boolean).join(" • ") || "No contact info"}
         </p>
-        {member.notes && <p className="mt-[0.25rem] text-[0.9rem] text-muted">{member.notes}</p>}
+        {member.notes && <p className="text-caption mt-[0.25rem] text-muted">{member.notes}</p>}
       </div>
       <div className="flex gap-[0.5rem]">
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="rounded-full border border-line px-[0.875rem] py-[0.4rem] text-[0.9rem] font-medium text-ink"
+          className="text-caption rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-ink"
         >
           Edit
         </button>
@@ -70,7 +70,7 @@ export function MemberRow({ member }: { member: Member }) {
           <input type="hidden" name="category" value={member.category} />
           <button
             type="submit"
-            className="rounded-full border border-line px-[0.875rem] py-[0.4rem] text-[0.9rem] font-medium text-red-600"
+            className="text-caption rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-red-600"
           >
             Remove
           </button>

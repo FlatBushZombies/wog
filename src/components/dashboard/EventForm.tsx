@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { createEvent } from "@/app/dashboard/(app)/events/actions";
 
 const inputClass =
-  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent";
+  "text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-ink outline-none focus-visible:border-accent";
 
 export function EventForm() {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export function EventForm() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-full bg-ink px-[1.25rem] py-[0.625rem] text-[0.95rem] font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
+        className="text-body rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.625rem] font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
       >
         Add Event
       </button>
@@ -30,7 +30,7 @@ export function EventForm() {
         formRef.current?.reset();
         setOpen(false);
       }}
-      className="flex flex-col gap-[0.625rem] rounded-[1rem] border border-line bg-white p-[1rem]"
+      className="flex flex-col gap-[0.625rem] rounded-[0.375rem] border border-line bg-white p-[1rem]"
     >
       <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
         <input name="title" required className={inputClass} placeholder="Event title" />
@@ -47,13 +47,13 @@ export function EventForm() {
         <input name="description" className={inputClass} placeholder="Description (optional)" />
       </div>
       <div className="flex gap-[0.5rem]">
-        <button type="submit" className="rounded-full bg-ink px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-white">
+        <button type="submit" className="text-caption rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.5rem] font-medium text-white">
           Save Event
         </button>
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="rounded-full border border-line px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-muted"
+          className="text-caption rounded-[0.4rem] border border-line px-[1.25rem] py-[0.5rem] font-medium text-muted"
         >
           Cancel
         </button>

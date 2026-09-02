@@ -43,25 +43,25 @@ export function About() {
 
         <div className="order-1 lg:order-2">
           <Eyebrow>{aboutContent.eyebrow}</Eyebrow>
-          <h2 className="mt-[1rem] max-w-[22rem] text-[2rem] font-semibold leading-[1.15] tracking-tight text-ink sm:text-[2.5rem]">
+          <h2 className="text-h2 mt-[1rem] max-w-[22rem] text-ink">
             <WordReveal text={aboutContent.heading} />
           </h2>
-          <p className="mt-[1.5rem] max-w-[26rem] text-[1rem] leading-relaxed text-muted">
+          <p className="text-body-lg mt-[1.5rem] max-w-[26rem] text-muted">
             {aboutContent.body}
           </p>
 
           <ScrollReveal delay={0.15} className="mt-[3rem] flex flex-wrap items-center justify-between gap-[1.5rem] border-t border-line pt-[1.75rem]">
             <div>
-              <p className="text-[0.9rem] font-semibold uppercase tracking-[0.06em] text-ink">
+              <p className="text-eyebrow text-ink">
                 {aboutContent.footerLabel}
               </p>
-              <p className="mt-[0.25rem] text-[0.95rem] text-muted">
+              <p className="text-body mt-[0.25rem] text-muted">
                 {aboutContent.footerTags.join(" • ")}
               </p>
             </div>
             <div className="flex items-center gap-[1.25rem]">
               {socialLinks.map((social) => (
-                <AnimatedLink key={social.label} href={social.href} external className="text-ink">
+                <AnimatedLink key={social.label} href={social.href} external className="text-body text-ink">
                   {social.label}
                 </AnimatedLink>
               ))}

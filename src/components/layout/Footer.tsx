@@ -10,10 +10,10 @@ export function Footer() {
   const { openModal } = useUiState();
 
   return (
-    <footer className="relative overflow-hidden rounded-t-[2rem] bg-ink text-white">
+    <footer className="relative overflow-hidden bg-ink text-white">
       <div className="shell relative z-10 py-[3.5rem] sm:py-[4.5rem]">
         <div className="flex flex-col gap-[1.5rem] border-b border-white/10 pb-[2.5rem] sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="max-w-[24rem] text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-[2.75rem]">
+          <h2 className="text-h2 max-w-[24rem]">
             Come worship with us.
           </h2>
           <PillButton variant="accent" onClick={() => openModal("visit")}>
@@ -25,51 +25,51 @@ export function Footer() {
           <div>
             <div className="mb-[0.875rem] flex items-center gap-[0.625rem]">
               <LogoBadge size={40} ring />
-              <p className="text-[1.1rem] font-semibold">{site.name}</p>
+              <p className="text-h3">{site.name}</p>
             </div>
-            <p className="max-w-[14rem] text-[0.95rem] text-white/60">{site.tagline}</p>
+            <p className="text-body max-w-[14rem] text-white/60">{site.tagline}</p>
           </div>
 
           <div className="flex flex-col gap-[0.625rem]">
-            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="text-eyebrow mb-[0.25rem] text-white/40">
               Explore
             </p>
             {footerContent.explore.map((item) => (
-              <AnimatedLink key={item.label} href={item.href} className="text-[1rem] text-white/80">
+              <AnimatedLink key={item.label} href={item.href} className="text-body text-white/80">
                 {item.label}
               </AnimatedLink>
             ))}
           </div>
 
           <div className="flex flex-col gap-[0.625rem]">
-            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="text-eyebrow mb-[0.25rem] text-white/40">
               Connect
             </p>
             {socialLinks.map((social) => (
-              <AnimatedLink key={social.label} href={social.href} external className="text-[1rem] text-white/80">
+              <AnimatedLink key={social.label} href={social.href} external className="text-body text-white/80">
                 {social.label}
               </AnimatedLink>
             ))}
             <button
               type="button"
               onClick={() => openModal("connect")}
-              className="group inline-flex w-fit items-center gap-[0.375rem] text-[1rem] text-white/80 opacity-70 transition-all duration-300 hover:translate-x-[4px] hover:opacity-100"
+              className="text-body group inline-flex w-fit items-center gap-[0.375rem] text-white/80 opacity-70 transition-all duration-300 hover:translate-x-[4px] hover:opacity-100"
             >
               Contact
             </button>
           </div>
 
           <div className="flex flex-col gap-[0.375rem]">
-            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="text-eyebrow mb-[0.25rem] text-white/40">
               Visit
             </p>
-            <p className="text-[1rem] text-white/80">{site.address}</p>
-            <p className="text-[1rem] text-white/80">{site.serviceDay}</p>
-            <p className="text-[1rem] text-white/80">{site.serviceTimes}</p>
+            <p className="text-body text-white/80">{site.address}</p>
+            <p className="text-body text-white/80">{site.serviceDay}</p>
+            <p className="text-body text-white/80">{site.serviceTimes}</p>
           </div>
         </div>
 
-        <div className="mt-[3rem] flex flex-col gap-[0.75rem] border-t border-white/10 pt-[1.5rem] text-[0.9rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-caption mt-[3rem] flex flex-col gap-[0.75rem] border-t border-white/10 pt-[1.5rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {site.founded} {site.name}. All rights reserved.
           </p>

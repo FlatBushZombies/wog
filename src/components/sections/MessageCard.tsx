@@ -14,7 +14,7 @@ export function MessageCard({ message, onSelect }: { message: Message; onSelect:
       onClick={() => onSelect(message)}
       whileHover={{ y: -8, scale: 1.012 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      className="group relative flex min-h-[22rem] w-full flex-col justify-between overflow-hidden rounded-[2rem] bg-ink p-[1.5rem] text-left text-white"
+      className="group relative flex min-h-[22rem] w-full flex-col justify-between overflow-hidden rounded-[0.5rem] bg-ink p-[1.5rem] text-left text-white"
     >
       <Image
         src={message.image.src}
@@ -38,14 +38,14 @@ export function MessageCard({ message, onSelect }: { message: Message; onSelect:
         {site.name}
       </span>
 
-      <div className="relative z-10 flex items-center justify-between text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white/70">
+      <div className="text-caption relative z-10 flex items-center justify-between uppercase tracking-[0.1em] text-white/70">
         <span>{message.category}</span>
         <span>{message.date}</span>
       </div>
 
       <div className="relative z-10">
-        <h3 className="text-[1.35rem] font-semibold leading-tight tracking-tight">{message.title}</h3>
-        <p className="mt-[0.375rem] text-[0.95rem] text-white/60">{message.speaker}</p>
+        <h3 className="text-h3 leading-tight">{message.title}</h3>
+        <p className="text-body mt-[0.375rem] text-white/60">{message.speaker}</p>
         <div className="mt-[0.875rem] flex flex-wrap items-center justify-between gap-[0.75rem]">
           <div className="flex flex-wrap gap-[0.375rem]">
             {message.tags.map((tag) => (
@@ -54,7 +54,7 @@ export function MessageCard({ message, onSelect }: { message: Message; onSelect:
               </TagChip>
             ))}
           </div>
-          <span className="flex h-[2.25rem] w-[2.25rem] shrink-0 items-center justify-center rounded-full bg-white/15 transition-transform duration-300 group-hover:rotate-45 group-hover:scale-[1.08]">
+          <span className="flex h-[2.25rem] w-[2.25rem] shrink-0 items-center justify-center rounded-[0.4rem] bg-white/15 transition-transform duration-300 group-hover:rotate-45 group-hover:scale-[1.08]">
             <ArrowIcon upRight />
           </span>
         </div>

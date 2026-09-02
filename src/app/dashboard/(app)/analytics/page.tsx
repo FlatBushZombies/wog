@@ -28,16 +28,16 @@ export default async function AnalyticsPage() {
     <div>
       <div className="flex items-center gap-[0.625rem]">
         <BarChart3 size={22} className="text-accent" aria-hidden="true" />
-        <h1 className="text-[2rem] font-semibold tracking-tight text-ink">Analytics</h1>
+        <h1 className="text-h1 text-ink">Analytics</h1>
       </div>
-      <p className="mt-[0.375rem] text-[1rem] text-muted">
+      <p className="text-body-lg mt-[0.375rem] text-muted">
         How {"DMWOG's"} membership and event attendance are trending.
       </p>
 
       <div className="mt-[1.75rem] grid grid-cols-1 gap-[1rem] lg:grid-cols-2">
-        <div className="rounded-[1.25rem] border border-line bg-white p-[1.5rem]">
-          <h2 className="text-[1.15rem] font-semibold text-ink">Members by Ministry</h2>
-          <p className="mt-[0.25rem] text-[0.9rem] text-muted">
+        <div className="rounded-[0.375rem] border border-line bg-white p-[1.5rem]">
+          <h2 className="text-h3 text-ink">Members by Ministry</h2>
+          <p className="text-body mt-[0.25rem] text-muted">
             {stats.totalMembers} people across all ministries.
           </p>
           <div className="mt-[1.5rem] flex flex-col gap-[1rem]">
@@ -53,23 +53,23 @@ export default async function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="rounded-[1.25rem] border border-line bg-white p-[1.5rem]">
-          <h2 className="text-[1.15rem] font-semibold text-ink">New Members</h2>
-          <p className="mt-[0.25rem] text-[0.9rem] text-muted">Added per month, last 6 months.</p>
+        <div className="rounded-[0.375rem] border border-line bg-white p-[1.5rem]">
+          <h2 className="text-h3 text-ink">New Members</h2>
+          <p className="text-body mt-[0.25rem] text-muted">Added per month, last 6 months.</p>
           <div className="mt-[1.5rem]">
             <ColumnChart data={growth} />
           </div>
         </div>
       </div>
 
-      <div className="mt-[1rem] rounded-[1.25rem] border border-line bg-white p-[1.5rem]">
-        <h2 className="text-[1.15rem] font-semibold text-ink">Event Attendance</h2>
-        <p className="mt-[0.25rem] text-[0.9rem] text-muted">
+      <div className="mt-[1rem] rounded-[0.375rem] border border-line bg-white p-[1.5rem]">
+        <h2 className="text-h3 text-ink">Event Attendance</h2>
+        <p className="text-body mt-[0.25rem] text-muted">
           Share of eligible members who attended each recent event.
         </p>
         <div className="mt-[1.5rem] flex flex-col gap-[1rem]">
           {attendanceSummary.length === 0 ? (
-            <p className="rounded-[1rem] border border-dashed border-line p-[1.5rem] text-center text-[0.9rem] text-muted">
+            <p className="text-body rounded-[0.375rem] border border-dashed border-line p-[1.5rem] text-center text-muted">
               No past events with attendance yet.
             </p>
           ) : (

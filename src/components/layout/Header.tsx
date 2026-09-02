@@ -35,7 +35,7 @@ export function Header() {
       <div className="shell mt-[1rem] sm:mt-[1.25rem]">
         <div
           className={cn(
-            "flex items-center justify-between rounded-[1.25rem] border border-line px-[1rem] py-[0.75rem] text-ink backdrop-blur-md transition-colors duration-300 sm:px-[1.5rem]",
+            "flex items-center justify-between rounded-[0.5rem] border border-line px-[1rem] py-[0.75rem] text-ink backdrop-blur-md transition-colors duration-300 sm:px-[1.5rem]",
             scrolled || isMenuOpen ? "bg-background/95 shadow-sm" : "bg-background/70"
           )}
         >
@@ -46,7 +46,7 @@ export function Header() {
             aria-label="DMWOG home"
           >
             <LogoBadge size={38} ring />
-            <span className="text-[1.1rem] font-semibold tracking-tight">{site.name}</span>
+            <span className="text-h3">{site.name}</span>
           </button>
 
           <nav className="hidden items-center gap-[1.75rem] md:flex" aria-label="Primary">
@@ -57,7 +57,7 @@ export function Header() {
                 whileHover={{ y: -2, opacity: 1 }}
                 initial={{ opacity: 0.7 }}
                 transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                className="text-[0.9rem] font-medium uppercase tracking-[0.06em]"
+                className="text-eyebrow"
                 onClick={() =>
                   link.href === "#contact" ? openModal("connect") : scrollToSection(link.href)
                 }
@@ -68,11 +68,11 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-[0.625rem]">
-            <div className="hidden flex-col items-end rounded-[0.875rem] border border-line px-[0.875rem] py-[0.375rem] text-right leading-[1.15] lg:flex">
-              <span className="text-[0.85rem] font-medium uppercase tracking-[0.1em] opacity-60">
+            <div className="hidden flex-col items-end rounded-[0.4rem] border border-line px-[0.875rem] py-[0.375rem] text-right leading-[1.15] lg:flex">
+              <span className="text-eyebrow opacity-60">
                 {site.serviceDay}
               </span>
-              <span className="text-[0.95rem] font-semibold">{site.serviceTimes}</span>
+              <span className="text-body font-semibold">{site.serviceTimes}</span>
             </div>
             <PillButton
               variant="accent"
@@ -88,7 +88,7 @@ export function Header() {
               aria-expanded={isMenuOpen}
               aria-controls="dmwog-nav-overlay"
               aria-label="Open menu"
-              className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full border border-line"
+              className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-[0.4rem] border border-line"
             >
               <span className="flex flex-col gap-[0.25rem]">
                 <span className="h-[0.09rem] w-[1.1rem] bg-ink" />

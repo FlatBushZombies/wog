@@ -37,10 +37,10 @@ function PrayerModalPanel({ intent, onClose }: { intent: ModalIntent; onClose: (
     return (
       <div className="flex flex-col items-center gap-[1.25rem] py-[1rem] text-center">
         <LogoBadge size={64} ring />
-        <h3 className="text-[1.6rem] font-semibold tracking-tight text-ink">
+        <h3 className="text-h3 text-ink">
           Thank you for reaching out.
         </h3>
-        <p className="text-[1.05rem] text-muted">
+        <p className="text-body-lg text-muted">
           Your message has been received. Someone from the DMWOG community will be in touch with
           you soon.
         </p>
@@ -54,7 +54,7 @@ function PrayerModalPanel({ intent, onClose }: { intent: ModalIntent; onClose: (
   return (
     <>
       <Eyebrow className="mb-[0.75rem]">Prayer &amp; Connection</Eyebrow>
-      <h3 id="prayer-modal-heading" className="mb-[1.5rem] text-[1.5rem] font-semibold tracking-tight text-ink">
+      <h3 id="prayer-modal-heading" className="text-h3 mb-[1.5rem] text-ink">
         How can we pray with you?
       </h3>
 
@@ -65,7 +65,7 @@ function PrayerModalPanel({ intent, onClose }: { intent: ModalIntent; onClose: (
             type="button"
             onClick={() => setSelectedIntent(option.value)}
             className={cn(
-              "rounded-full border px-[0.875rem] py-[0.45rem] text-[0.9rem] font-medium transition-colors",
+              "text-caption rounded-[0.4rem] border px-[0.875rem] py-[0.45rem] transition-colors",
               selectedIntent === option.value
                 ? "border-ink bg-ink text-white"
                 : "border-line text-muted hover:border-subtle"
@@ -78,31 +78,31 @@ function PrayerModalPanel({ intent, onClose }: { intent: ModalIntent; onClose: (
 
       <form className="flex flex-col gap-[0.875rem]" onSubmit={handleSubmit}>
         <label className="flex flex-col gap-[0.375rem]">
-          <span className="text-[0.9rem] font-medium text-muted">Name</span>
+          <span className="text-caption text-muted">Name</span>
           <input
             ref={firstFieldRef}
             required
             type="text"
             name="name"
-            className="rounded-[0.875rem] border border-line bg-white px-[1rem] py-[0.75rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent"
+            className="text-body rounded-[0.5rem] border border-line bg-white px-[1rem] py-[0.75rem] text-ink outline-none focus-visible:border-accent"
           />
         </label>
         <label className="flex flex-col gap-[0.375rem]">
-          <span className="text-[0.9rem] font-medium text-muted">Email or Phone</span>
+          <span className="text-caption text-muted">Email or Phone</span>
           <input
             required
             type="text"
             name="contact"
-            className="rounded-[0.875rem] border border-line bg-white px-[1rem] py-[0.75rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent"
+            className="text-body rounded-[0.5rem] border border-line bg-white px-[1rem] py-[0.75rem] text-ink outline-none focus-visible:border-accent"
           />
         </label>
         <label className="flex flex-col gap-[0.375rem]">
-          <span className="text-[0.9rem] font-medium text-muted">How can we pray with you?</span>
+          <span className="text-caption text-muted">How can we pray with you?</span>
           <textarea
             required
             name="message"
             rows={3}
-            className="resize-none rounded-[0.875rem] border border-line bg-white px-[1rem] py-[0.75rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent"
+            className="text-body resize-none rounded-[0.5rem] border border-line bg-white px-[1rem] py-[0.75rem] text-ink outline-none focus-visible:border-accent"
           />
         </label>
 
@@ -130,7 +130,7 @@ export function PrayerModal() {
           role="presentation"
         >
           <motion.div
-            className="w-full max-w-[28rem] rounded-t-[2rem] bg-background p-[1.75rem] sm:rounded-[2rem] sm:p-[2.25rem]"
+            className="w-full max-w-[28rem] rounded-t-[0.75rem] bg-background p-[1.75rem] sm:rounded-[0.75rem] sm:p-[2.25rem]"
             initial={{ y: 32, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 24, opacity: 0 }}

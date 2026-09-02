@@ -25,11 +25,11 @@ export function FaithBand() {
               transition={{ ...springReveal, delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -4 }}
               className={cn(
-                "flex flex-1 items-center justify-center rounded-[2.5rem] px-[2rem] py-[2.5rem] text-center sm:py-[3.5rem]",
+                "flex flex-1 items-center justify-center rounded-[0.5rem] px-[2rem] py-[2.5rem] text-center sm:py-[3.5rem]",
                 VARIANT_CLASSES[item.variant]
               )}
             >
-              <span className="text-[1.75rem] font-semibold uppercase tracking-tight sm:text-[2.25rem]">
+              <span className="text-h3 uppercase">
                 {item.label}
               </span>
             </motion.div>
@@ -41,7 +41,7 @@ export function FaithBand() {
                 viewport={{ once: true, margin: "-10% 0px" }}
                 transition={{ ...springReveal, delay: 0.25 }}
                 aria-hidden="true"
-                className="flex h-[3rem] w-[3rem] shrink-0 items-center justify-center self-center rounded-full bg-ink text-white sm:h-[3.5rem] sm:w-[3.5rem]"
+                className="flex h-[3rem] w-[3rem] shrink-0 items-center justify-center self-center rounded-[0.4rem] bg-ink text-white sm:h-[3.5rem] sm:w-[3.5rem]"
               >
                 <ArrowIcon />
               </motion.div>

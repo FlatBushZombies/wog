@@ -59,9 +59,9 @@ export function AttendanceChecklist({
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search people..."
-            className="rounded-[0.875rem] border border-line bg-white px-[1rem] py-[0.625rem] text-[0.9rem] outline-none focus-visible:border-accent"
+            className="text-body rounded-[0.4rem] border border-line bg-white px-[1rem] py-[0.625rem] outline-none focus-visible:border-accent"
           />
-          <p className="whitespace-nowrap text-[0.95rem] font-medium text-muted">
+          <p className="text-body whitespace-nowrap font-medium text-muted">
             {attendedCount} / {members.length} attended
           </p>
         </div>
@@ -73,7 +73,7 @@ export function AttendanceChecklist({
               type="button"
               onClick={() => setFilter(item.value)}
               className={cn(
-                "rounded-full border px-[0.875rem] py-[0.4rem] text-[0.9rem] font-medium transition-colors",
+                "text-caption rounded-[0.4rem] border px-[0.875rem] py-[0.4rem] font-medium transition-colors",
                 filter === item.value
                   ? "border-ink bg-ink text-white"
                   : "border-line text-muted hover:border-subtle"
@@ -87,18 +87,18 @@ export function AttendanceChecklist({
 
       <div className="flex flex-col gap-[0.5rem]">
         {filtered.length === 0 ? (
-          <p className="rounded-[1rem] border border-dashed border-line p-[1.5rem] text-center text-[0.9rem] text-muted">
+          <p className="text-body rounded-[0.375rem] border border-dashed border-line p-[1.5rem] text-center text-muted">
             No one matches.
           </p>
         ) : (
           filtered.map((member) => (
             <label
               key={member.memberId}
-              className="flex cursor-pointer items-center justify-between gap-[1rem] rounded-[1rem] border border-line bg-white p-[0.875rem]"
+              className="flex cursor-pointer items-center justify-between gap-[1rem] rounded-[0.375rem] border border-line bg-white p-[0.875rem]"
             >
               <div>
-                <p className="text-[0.9rem] font-medium text-ink">{member.fullName}</p>
-                <p className="text-[0.95rem] text-muted">{CATEGORY_LABELS[member.category]}</p>
+                <p className="text-body font-medium text-ink">{member.fullName}</p>
+                <p className="text-caption text-muted">{CATEGORY_LABELS[member.category]}</p>
               </div>
               <input
                 type="checkbox"

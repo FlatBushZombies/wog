@@ -34,7 +34,7 @@ export function MessageViewer({
           role="presentation"
         >
           <motion.div
-            className="w-full max-w-[36rem] overflow-hidden rounded-[2rem] bg-ink text-white"
+            className="w-full max-w-[36rem] overflow-hidden rounded-[0.75rem] bg-ink text-white"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
@@ -45,19 +45,19 @@ export function MessageViewer({
             aria-labelledby="message-viewer-heading"
           >
             <div className="flex aspect-video items-center justify-center border-b border-white/10 bg-black/40">
-              <span className="text-[0.9rem] font-medium uppercase tracking-[0.1em] text-white/60">
+              <span className="text-eyebrow text-white/60">
                 Watch Message
               </span>
             </div>
             <div className="p-[1.75rem]">
-              <p className="text-[0.85rem] font-medium uppercase tracking-[0.1em] text-white/50">
+              <p className="text-eyebrow text-white/50">
                 {message.category} • {message.date}
               </p>
-              <h3 id="message-viewer-heading" className="mt-[0.5rem] text-[1.5rem] font-semibold tracking-tight">
+              <h3 id="message-viewer-heading" className="text-h3 mt-[0.5rem]">
                 {message.title}
               </h3>
-              <p className="mt-[0.25rem] text-[0.9rem] text-white/60">{message.speaker}</p>
-              <p className="mt-[1rem] text-[0.95rem] text-white/70">{message.description}</p>
+              <p className="text-body mt-[0.25rem] text-white/60">{message.speaker}</p>
+              <p className="text-body mt-[1rem] text-white/70">{message.description}</p>
               <div className="mt-[1rem] flex flex-wrap gap-[0.5rem]">
                 {message.tags.map((tag) => (
                   <TagChip key={tag} light>

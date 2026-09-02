@@ -37,12 +37,12 @@ export function NavigationMenu() {
           <div className="shell flex items-center justify-between py-[1.5rem]">
             <div className="flex items-center gap-[0.5rem]">
               <LogoBadge size={38} ring />
-              <span className="text-[1.1rem] font-semibold tracking-tight">{site.name}</span>
+              <span className="text-h3">{site.name}</span>
             </div>
             <button
               type="button"
               onClick={closeMenu}
-              className="flex items-center gap-[0.5rem] text-[0.9rem] font-medium uppercase tracking-[0.08em] text-white/70 hover:text-white"
+              className="text-eyebrow flex items-center gap-[0.5rem] text-white/70 hover:text-white"
             >
               Close
               <span aria-hidden="true" className="text-[1.1rem] leading-none">
@@ -62,8 +62,8 @@ export function NavigationMenu() {
                 onClick={() => handleNavigate(link.href)}
                 className="group flex items-baseline gap-[1rem] py-[0.5rem] text-left"
               >
-                <span className="text-[1rem] text-white/40">{String(index + 1).padStart(2, "0")}</span>
-                <span className="text-[2.5rem] font-semibold tracking-tight text-white/85 transition-colors group-hover:text-white sm:text-[3.75rem]">
+                <span className="text-body text-white/40">{String(index + 1).padStart(2, "0")}</span>
+                <span className="text-h1 text-white/85 transition-colors group-hover:text-white">
                   {link.label}
                 </span>
               </motion.button>
@@ -71,7 +71,7 @@ export function NavigationMenu() {
           </nav>
 
           <div className="shell flex flex-col gap-[1.25rem] border-t border-white/10 py-[1.5rem] sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-[0.95rem] text-white/60">
+            <div className="text-body text-white/60">
               <p className="font-medium text-white">{site.name}</p>
               <p>{site.address}</p>
             </div>
@@ -82,7 +82,7 @@ export function NavigationMenu() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[0.9rem] font-medium uppercase tracking-[0.06em] text-white/60 transition-transform hover:scale-[1.15] hover:text-white"
+                  className="text-eyebrow text-white/60 transition-transform hover:scale-[1.15] hover:text-white"
                 >
                   {social.label}
                 </a>

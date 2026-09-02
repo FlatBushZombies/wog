@@ -26,10 +26,10 @@ export function Messages() {
       <div className="shell">
         <ScrollReveal className="max-w-[32rem]">
           <Eyebrow>Messages</Eyebrow>
-          <h2 className="mt-[1rem] text-[2rem] font-semibold leading-[1.1] tracking-tight text-ink sm:text-[2.75rem]">
+          <h2 className="text-h2 mt-[1rem] text-ink">
             Words that change lives.
           </h2>
-          <p className="mt-[1.25rem] text-[1rem] text-muted">
+          <p className="text-body-lg mt-[1.25rem] text-muted">
             Listen, watch and grow through messages from DMWOG.
           </p>
         </ScrollReveal>

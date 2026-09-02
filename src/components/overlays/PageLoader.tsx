@@ -56,7 +56,7 @@ export function PageLoader() {
     <AnimatePresence onExitComplete={handleExitComplete}>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden rounded-b-[2rem] bg-ink text-white"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-ink text-white"
           exit={{ y: "-100%" }}
           transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
         >
@@ -67,9 +67,9 @@ export function PageLoader() {
           >
             <div className="flex items-center gap-[0.75rem]">
               <LogoBadge size={48} ring />
-              <span className="text-[1.6rem] font-semibold tracking-tight">{site.name}</span>
+              <span className="text-h3">{site.name}</span>
             </div>
-            <p className="max-w-[20rem] text-center text-[1rem] text-white/60">{site.tagline}</p>
+            <p className="text-body-lg max-w-[20rem] text-center text-white/60">{site.tagline}</p>
           </motion.div>
 
           <motion.div
@@ -77,7 +77,7 @@ export function PageLoader() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="mb-[0.5rem] flex items-center justify-between text-[0.9rem] uppercase tracking-[0.15em] text-white/50">
+            <div className="text-caption mb-[0.5rem] flex items-center justify-between uppercase tracking-[0.15em] text-white/50">
               <span>Loading</span>
               <span className="tabular-nums">{String(progress).padStart(3, "0")}</span>
             </div>

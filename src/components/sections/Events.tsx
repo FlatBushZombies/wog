@@ -9,7 +9,7 @@ export function Events() {
       <div className="shell">
         <ScrollReveal className="max-w-[32rem]">
           <Eyebrow>What&apos;s Happening</Eyebrow>
-          <h2 className="mt-[1rem] text-[2rem] font-semibold leading-[1.1] tracking-tight text-ink sm:text-[2.75rem]">
+          <h2 className="text-h2 mt-[1rem] text-ink">
             Come together.
           </h2>
         </ScrollReveal>

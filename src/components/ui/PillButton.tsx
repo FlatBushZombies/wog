@@ -43,9 +43,9 @@ export function PillButton({
   const { scrollToSection } = useSmoothScroll();
 
   const classes = cn(
-    "group inline-flex items-center gap-[0.75rem] rounded-full py-[0.75rem] pl-[1.5rem] transition-transform duration-300 ease-out hover:scale-[1.04]",
+    "group inline-flex items-center gap-[0.75rem] rounded-[0.5rem] py-[0.75rem] pl-[1.5rem] transition-transform duration-300 ease-out hover:scale-[1.03]",
     arrow ? "pr-[0.5rem]" : "pr-[1.5rem]",
-    "text-[0.9rem] font-medium",
+    "text-caption font-semibold normal-case tracking-normal",
     VARIANT_CLASSES[variant],
     className
   );
@@ -53,7 +53,7 @@ export function PillButton({
   const arrowBadge = arrow && (
     <span
       className={cn(
-        "flex h-[2rem] w-[2rem] items-center justify-center rounded-full transition-transform duration-300 ease-out group-hover:translate-x-[2px]",
+        "flex h-[2rem] w-[2rem] items-center justify-center rounded-[0.3rem] transition-transform duration-300 ease-out group-hover:translate-x-[2px]",
         ARROW_BADGE_CLASSES[variant]
       )}
     >
