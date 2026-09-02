@@ -11,7 +11,7 @@ function isTransientError(error: unknown): boolean {
   return false;
 }
 
-export async function withRetry<T>(fn: () => Promise<T>, retries = 2, delayMs = 300): Promise<T> {
+export async function withRetry<T>(fn: () => Promise<T>, retries = 3, delayMs = 400): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {

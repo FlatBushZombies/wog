@@ -38,14 +38,14 @@ export function MessageCard({ message, onSelect }: { message: Message; onSelect:
         {site.name}
       </span>
 
-      <div className="relative z-10 flex items-center justify-between text-[0.7rem] font-medium uppercase tracking-[0.1em] text-white/70">
+      <div className="relative z-10 flex items-center justify-between text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white/70">
         <span>{message.category}</span>
         <span>{message.date}</span>
       </div>
 
       <div className="relative z-10">
         <h3 className="text-[1.35rem] font-semibold leading-tight tracking-tight">{message.title}</h3>
-        <p className="mt-[0.375rem] text-[0.85rem] text-white/60">{message.speaker}</p>
+        <p className="mt-[0.375rem] text-[0.95rem] text-white/60">{message.speaker}</p>
         <div className="mt-[0.875rem] flex flex-wrap items-center justify-between gap-[0.75rem]">
           <div className="flex flex-wrap gap-[0.375rem]">
             {message.tags.map((tag) => (

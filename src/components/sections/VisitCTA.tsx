@@ -43,14 +43,14 @@ export function VisitCTA() {
         >
           {visitContent.details.map((detail) => (
             <div key={detail.label}>
-              <p className="text-[0.75rem] font-medium uppercase tracking-[0.1em] text-white/50">
+              <p className="text-[0.85rem] font-medium uppercase tracking-[0.1em] text-white/50">
                 {detail.label}
               </p>
               <p className="mt-[0.375rem] text-[1.1rem] font-medium">{detail.value}</p>
             </div>
           ))}
           <div>
-            <p className="text-[0.75rem] font-medium uppercase tracking-[0.1em] text-white/50">
+            <p className="text-[0.85rem] font-medium uppercase tracking-[0.1em] text-white/50">
               What to Expect
             </p>
             <p className="mt-[0.375rem] text-[1.1rem] font-medium">{visitContent.expect.join(" • ")}</p>

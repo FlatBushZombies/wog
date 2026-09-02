@@ -24,7 +24,7 @@ export function MinistrySection({
         <AddMemberForm category={category} />
       </div>
 
-      <p className="mt-[1.5rem] text-[0.8rem] font-medium uppercase tracking-[0.08em] text-muted">
+      <p className="mt-[1.5rem] text-[0.9rem] font-medium uppercase tracking-[0.08em] text-muted">
         {members.length} {members.length === 1 ? "person" : "people"}
       </p>
 

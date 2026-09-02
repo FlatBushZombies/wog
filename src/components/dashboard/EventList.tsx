@@ -14,7 +14,7 @@ function formatEventDate(dateStr: string) {
 export function EventList({ title, events }: { title: string; events: ChurchEventRow[] }) {
   return (
     <div>
-      <p className="text-[0.8rem] font-medium uppercase tracking-[0.08em] text-muted">{title}</p>
+      <p className="text-[0.9rem] font-medium uppercase tracking-[0.08em] text-muted">{title}</p>
       <div className="mt-[0.75rem] flex flex-col gap-[0.75rem]">
         {events.length === 0 ? (
           <p className="rounded-[1rem] border border-dashed border-line p-[1.5rem] text-center text-[0.9rem] text-muted">
@@ -29,13 +29,13 @@ export function EventList({ title, events }: { title: string; events: ChurchEven
             >
               <div>
                 <p className="text-[0.95rem] font-medium text-ink">{event.title}</p>
-                <p className="text-[0.8rem] text-muted">
+                <p className="text-[0.9rem] text-muted">
                   {formatEventDate(event.eventDate)}
                   {event.eventTime ? ` • ${event.eventTime}` : ""}
                   {event.location ? ` • ${event.location}` : ""}
                 </p>
               </div>
-              <span className="text-[0.75rem] font-medium uppercase tracking-[0.06em] text-accent">
+              <span className="text-[0.95rem] font-medium uppercase tracking-[0.06em] text-accent">
                 {event.category ? CATEGORY_LABELS[event.category] : "All Ministries"}
               </span>
             </Link>

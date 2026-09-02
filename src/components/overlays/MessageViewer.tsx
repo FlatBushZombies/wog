@@ -50,7 +50,7 @@ export function MessageViewer({
               </span>
             </div>
             <div className="p-[1.75rem]">
-              <p className="text-[0.75rem] font-medium uppercase tracking-[0.1em] text-white/50">
+              <p className="text-[0.85rem] font-medium uppercase tracking-[0.1em] text-white/50">
                 {message.category} • {message.date}
               </p>
               <h3 id="message-viewer-heading" className="mt-[0.5rem] text-[1.5rem] font-semibold tracking-tight">

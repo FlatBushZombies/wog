@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { LogoMark } from "../ui/LogoMark";
+import { LogoBadge } from "../ui/LogoBadge";
 import { PillButton } from "../ui/PillButton";
 import { navLinks, site, socialLinks } from "@/content/site";
 import { useUiState } from "@/lib/ui-state";
@@ -36,13 +36,13 @@ export function NavigationMenu() {
         >
           <div className="shell flex items-center justify-between py-[1.5rem]">
             <div className="flex items-center gap-[0.5rem]">
-              <LogoMark variant="accent" />
-              <span className="text-[1rem] font-semibold tracking-tight">{site.name}</span>
+              <LogoBadge size={38} ring />
+              <span className="text-[1.1rem] font-semibold tracking-tight">{site.name}</span>
             </div>
             <button
               type="button"
               onClick={closeMenu}
-              className="flex items-center gap-[0.5rem] text-[0.8rem] font-medium uppercase tracking-[0.08em] text-white/70 hover:text-white"
+              className="flex items-center gap-[0.5rem] text-[0.9rem] font-medium uppercase tracking-[0.08em] text-white/70 hover:text-white"
             >
               Close
               <span aria-hidden="true" className="text-[1.1rem] leading-none">
@@ -71,7 +71,7 @@ export function NavigationMenu() {
           </nav>
 
           <div className="shell flex flex-col gap-[1.25rem] border-t border-white/10 py-[1.5rem] sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-[0.85rem] text-white/60">
+            <div className="text-[0.95rem] text-white/60">
               <p className="font-medium text-white">{site.name}</p>
               <p>{site.address}</p>
             </div>
@@ -82,7 +82,7 @@ export function NavigationMenu() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[0.8rem] font-medium uppercase tracking-[0.06em] text-white/60 transition-transform hover:scale-[1.15] hover:text-white"
+                  className="text-[0.9rem] font-medium uppercase tracking-[0.06em] text-white/60 transition-transform hover:scale-[1.15] hover:text-white"
                 >
                   {social.label}
                 </a>

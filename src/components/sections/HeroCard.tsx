@@ -47,7 +47,7 @@ export function HeroCard({ className }: { className?: string }) {
             transition={{ type: "spring", stiffness: 260, damping: 22 }}
             className="absolute inset-0 text-left"
           >
-            <p className="text-[0.7rem] font-medium uppercase tracking-[0.1em] text-accent-light">
+            <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent-light">
               {active.label}
             </p>
             <p className="mt-[0.375rem] text-[1rem] font-medium leading-snug text-white/90">

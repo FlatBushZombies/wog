@@ -6,7 +6,7 @@ import type { ChurchEventRow } from "@/lib/db/schema";
 import { updateEvent, deleteEvent } from "@/app/dashboard/(app)/events/actions";
 
 const inputClass =
-  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.85rem] text-ink outline-none focus-visible:border-accent";
+  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent";
 
 function formatEventDate(dateStr: string) {
   return new Date(`${dateStr}T00:00:00`).toLocaleDateString("en-US", {
@@ -45,13 +45,13 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
           <input name="description" defaultValue={event.description ?? ""} className={inputClass} placeholder="Description" />
         </div>
         <div className="flex gap-[0.5rem]">
-          <button type="submit" className="rounded-full bg-ink px-[1.25rem] py-[0.5rem] text-[0.8rem] font-medium text-white">
+          <button type="submit" className="rounded-full bg-ink px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-white">
             Save
           </button>
           <button
             type="button"
             onClick={() => setEditing(false)}
-            className="rounded-full border border-line px-[1.25rem] py-[0.5rem] text-[0.8rem] font-medium text-muted"
+            className="rounded-full border border-line px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-muted"
           >
             Cancel
           </button>
@@ -62,7 +62,7 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
 
   return (
     <div className="rounded-[1.25rem] border border-line bg-white p-[1.25rem]">
-      <Link href="/dashboard/events" className="text-[0.8rem] font-medium text-muted hover:text-ink">
+      <Link href="/dashboard/events" className="text-[0.9rem] font-medium text-muted hover:text-ink">
         ← All events
       </Link>
       <div className="mt-[0.75rem] flex flex-col gap-[1rem] sm:flex-row sm:items-start sm:justify-between">
@@ -79,7 +79,7 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
           <button
             type="button"
             onClick={() => setEditing(true)}
-            className="rounded-full border border-line px-[1rem] py-[0.5rem] text-[0.8rem] font-medium text-ink"
+            className="rounded-full border border-line px-[1rem] py-[0.5rem] text-[0.9rem] font-medium text-ink"
           >
             Edit
           </button>
@@ -92,7 +92,7 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
             <input type="hidden" name="id" value={event.id} />
             <button
               type="submit"
-              className="rounded-full border border-line px-[1rem] py-[0.5rem] text-[0.8rem] font-medium text-red-600"
+              className="rounded-full border border-line px-[1rem] py-[0.5rem] text-[0.9rem] font-medium text-red-600"
             >
               Delete
             </button>

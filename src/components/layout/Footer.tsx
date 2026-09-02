@@ -3,6 +3,7 @@
 import { site, socialLinks, footerContent } from "@/content/site";
 import { PillButton } from "../ui/PillButton";
 import { AnimatedLink } from "../ui/AnimatedLink";
+import { LogoBadge } from "../ui/LogoBadge";
 import { useUiState } from "@/lib/ui-state";
 
 export function Footer() {
@@ -22,50 +23,53 @@ export function Footer() {
 
         <div className="grid grid-cols-2 gap-x-[1.5rem] gap-y-[2.5rem] pt-[2.5rem] sm:grid-cols-4">
           <div>
-            <p className="mb-[0.75rem] text-[1rem] font-semibold">{site.name}</p>
-            <p className="max-w-[14rem] text-[0.875rem] text-white/60">{site.tagline}</p>
+            <div className="mb-[0.875rem] flex items-center gap-[0.625rem]">
+              <LogoBadge size={40} ring />
+              <p className="text-[1.1rem] font-semibold">{site.name}</p>
+            </div>
+            <p className="max-w-[14rem] text-[0.95rem] text-white/60">{site.tagline}</p>
           </div>
 
           <div className="flex flex-col gap-[0.625rem]">
-            <p className="mb-[0.25rem] text-[0.75rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
               Explore
             </p>
             {footerContent.explore.map((item) => (
-              <AnimatedLink key={item.label} href={item.href} className="text-[0.9rem] text-white/80">
+              <AnimatedLink key={item.label} href={item.href} className="text-[1rem] text-white/80">
                 {item.label}
               </AnimatedLink>
             ))}
           </div>
 
           <div className="flex flex-col gap-[0.625rem]">
-            <p className="mb-[0.25rem] text-[0.75rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
               Connect
             </p>
             {socialLinks.map((social) => (
-              <AnimatedLink key={social.label} href={social.href} external className="text-[0.9rem] text-white/80">
+              <AnimatedLink key={social.label} href={social.href} external className="text-[1rem] text-white/80">
                 {social.label}
               </AnimatedLink>
             ))}
             <button
               type="button"
               onClick={() => openModal("connect")}
-              className="group inline-flex w-fit items-center gap-[0.375rem] text-[0.9rem] text-white/80 opacity-70 transition-all duration-300 hover:translate-x-[4px] hover:opacity-100"
+              className="group inline-flex w-fit items-center gap-[0.375rem] text-[1rem] text-white/80 opacity-70 transition-all duration-300 hover:translate-x-[4px] hover:opacity-100"
             >
               Contact
             </button>
           </div>
 
           <div className="flex flex-col gap-[0.375rem]">
-            <p className="mb-[0.25rem] text-[0.75rem] font-medium uppercase tracking-[0.08em] text-white/40">
+            <p className="mb-[0.25rem] text-[0.95rem] font-medium uppercase tracking-[0.08em] text-white/40">
               Visit
             </p>
-            <p className="text-[0.9rem] text-white/80">{site.address}</p>
-            <p className="text-[0.9rem] text-white/80">{site.serviceDay}</p>
-            <p className="text-[0.9rem] text-white/80">{site.serviceTimes}</p>
+            <p className="text-[1rem] text-white/80">{site.address}</p>
+            <p className="text-[1rem] text-white/80">{site.serviceDay}</p>
+            <p className="text-[1rem] text-white/80">{site.serviceTimes}</p>
           </div>
         </div>
 
-        <div className="mt-[3rem] flex flex-col gap-[0.75rem] border-t border-white/10 pt-[1.5rem] text-[0.8rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-[3rem] flex flex-col gap-[0.75rem] border-t border-white/10 pt-[1.5rem] text-[0.9rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {site.founded} {site.name}. All rights reserved.
           </p>

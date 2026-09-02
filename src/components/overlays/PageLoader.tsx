@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LogoMark } from "../ui/LogoMark";
+import { LogoBadge } from "../ui/LogoBadge";
 import { site } from "@/content/site";
 import { lockScroll, unlockScroll } from "@/lib/scroll-lock";
 import { useAppReady } from "@/lib/app-ready";
@@ -65,11 +65,11 @@ export function PageLoader() {
             exit={{ opacity: 0, y: -24 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="flex items-center gap-[0.625rem]">
-              <LogoMark variant="accent" size={32} />
-              <span className="text-[1.5rem] font-semibold tracking-tight">{site.name}</span>
+            <div className="flex items-center gap-[0.75rem]">
+              <LogoBadge size={48} ring />
+              <span className="text-[1.6rem] font-semibold tracking-tight">{site.name}</span>
             </div>
-            <p className="max-w-[20rem] text-center text-[0.9rem] text-white/60">{site.tagline}</p>
+            <p className="max-w-[20rem] text-center text-[1rem] text-white/60">{site.tagline}</p>
           </motion.div>
 
           <motion.div
@@ -77,7 +77,7 @@ export function PageLoader() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="mb-[0.5rem] flex items-center justify-between text-[0.7rem] uppercase tracking-[0.15em] text-white/50">
+            <div className="mb-[0.5rem] flex items-center justify-between text-[0.9rem] uppercase tracking-[0.15em] text-white/50">
               <span>Loading</span>
               <span className="tabular-nums">{String(progress).padStart(3, "0")}</span>
             </div>

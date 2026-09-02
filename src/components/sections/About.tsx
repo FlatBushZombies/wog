@@ -55,7 +55,7 @@ export function About() {
               <p className="text-[0.9rem] font-semibold uppercase tracking-[0.06em] text-ink">
                 {aboutContent.footerLabel}
               </p>
-              <p className="mt-[0.25rem] text-[0.85rem] text-muted">
+              <p className="mt-[0.25rem] text-[0.95rem] text-muted">
                 {aboutContent.footerTags.join(" • ")}
               </p>
             </div>

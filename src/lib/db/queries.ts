@@ -54,6 +54,12 @@ export async function getAllMembers(): Promise<Member[]> {
   return withRetry(() => db!.select().from(members).orderBy(asc(members.fullName)));
 }
 
+export async function getRecentMembers(limit = 5): Promise<Member[]> {
+  return withRetry(() =>
+    db!.select().from(members).orderBy(desc(members.createdAt)).limit(limit)
+  );
+}
+
 export async function getDashboardStats() {
   const [all, upcomingEvent] = await Promise.all([getAllMembers(), getNextUpcomingEvent()]);
 

@@ -61,7 +61,7 @@ export function AttendanceChecklist({
             placeholder="Search people..."
             className="rounded-[0.875rem] border border-line bg-white px-[1rem] py-[0.625rem] text-[0.9rem] outline-none focus-visible:border-accent"
           />
-          <p className="whitespace-nowrap text-[0.85rem] font-medium text-muted">
+          <p className="whitespace-nowrap text-[0.95rem] font-medium text-muted">
             {attendedCount} / {members.length} attended
           </p>
         </div>
@@ -73,7 +73,7 @@ export function AttendanceChecklist({
               type="button"
               onClick={() => setFilter(item.value)}
               className={cn(
-                "rounded-full border px-[0.875rem] py-[0.4rem] text-[0.8rem] font-medium transition-colors",
+                "rounded-full border px-[0.875rem] py-[0.4rem] text-[0.9rem] font-medium transition-colors",
                 filter === item.value
                   ? "border-ink bg-ink text-white"
                   : "border-line text-muted hover:border-subtle"
@@ -98,7 +98,7 @@ export function AttendanceChecklist({
             >
               <div>
                 <p className="text-[0.9rem] font-medium text-ink">{member.fullName}</p>
-                <p className="text-[0.75rem] text-muted">{CATEGORY_LABELS[member.category]}</p>
+                <p className="text-[0.95rem] text-muted">{CATEGORY_LABELS[member.category]}</p>
               </div>
               <input
                 type="checkbox"

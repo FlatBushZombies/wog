@@ -11,14 +11,6 @@ function pexels(id: number, width = 1600): string {
 }
 
 export const siteImages = {
-  heroBase: {
-    src: pexels(34770978, 2400),
-    alt: "Congregation members raising their hands during a passionate worship service",
-  },
-  heroReveal: {
-    src: pexels(36117935, 2400),
-    alt: "Silhouettes of worshippers with raised hands under vibrant stage lighting",
-  },
   worship: {
     src: pexels(7520354),
     alt: "A robed choir singing together as sunlight streams through the windows",

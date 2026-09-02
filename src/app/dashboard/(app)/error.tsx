@@ -18,7 +18,7 @@ export default function DashboardError({
       <button
         type="button"
         onClick={reset}
-        className="rounded-full bg-ink px-[1.25rem] py-[0.625rem] text-[0.85rem] font-medium text-white"
+        className="rounded-full bg-ink px-[1.25rem] py-[0.625rem] text-[0.95rem] font-medium text-white"
       >
         Try Again
       </button>

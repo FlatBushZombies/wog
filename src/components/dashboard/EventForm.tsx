@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { createEvent } from "@/app/dashboard/(app)/events/actions";
 
 const inputClass =
-  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.85rem] text-ink outline-none focus-visible:border-accent";
+  "rounded-[0.75rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-[0.95rem] text-ink outline-none focus-visible:border-accent";
 
 export function EventForm() {
   const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ export function EventForm() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-full bg-ink px-[1.25rem] py-[0.625rem] text-[0.85rem] font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
+        className="rounded-full bg-ink px-[1.25rem] py-[0.625rem] text-[0.95rem] font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
       >
         Add Event
       </button>
@@ -47,13 +47,13 @@ export function EventForm() {
         <input name="description" className={inputClass} placeholder="Description (optional)" />
       </div>
       <div className="flex gap-[0.5rem]">
-        <button type="submit" className="rounded-full bg-ink px-[1.25rem] py-[0.5rem] text-[0.8rem] font-medium text-white">
+        <button type="submit" className="rounded-full bg-ink px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-white">
           Save Event
         </button>
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="rounded-full border border-line px-[1.25rem] py-[0.5rem] text-[0.8rem] font-medium text-muted"
+          className="rounded-full border border-line px-[1.25rem] py-[0.5rem] text-[0.9rem] font-medium text-muted"
         >
           Cancel
         </button>

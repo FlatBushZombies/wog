@@ -14,12 +14,13 @@
   --surface: #f0eee9;
   --surface-2: #e4e1da;
 
-  --accent: #b58a52;
-  --accent-light: #d2ae78;
-  --accent-dark: #8d693c;
+  --accent: #c1272d;
+  --accent-light: #e05257;
+  --accent-dark: #8c161b;
 
-  --hero-from: #e9e5de;
-  --hero-to: #c9c5bd;
+  --navy: #1b2a6b;
+  --navy-light: #32449e;
+  --navy-dark: #10173f;
 }
 
 @theme inline {
@@ -34,30 +35,34 @@
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-navy-dark: var(--navy-dark);
   --font-sans: var(--font-onest);
 }
 
+/* Adaptive type scale, base 18px (bumped up from 16px for legibility) */
 @media (max-width: 1920px) {
   html {
-    font-size: 0.833333vw;
+    font-size: 0.9375vw;
   }
 }
 
 @media (max-width: 1440px) {
   html {
-    font-size: 1.111111vw;
+    font-size: 1.25vw;
   }
 }
 
 @media (max-width: 1024px) {
   html {
-    font-size: 1.5625vw;
+    font-size: 1.7578125vw;
   }
 }
 
 @media (max-width: 640px) {
   html {
-    font-size: 4.444444vw;
+    font-size: 5vw;
   }
 }
 

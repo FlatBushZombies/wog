@@ -3,10 +3,19 @@
 import { motion } from "framer-motion";
 import type { Ministry } from "@/content/ministries";
 import { ArrowIcon } from "../ui/ArrowIcon";
+import { useUiState } from "@/lib/ui-state";
 
 export function MinistryRow({ ministry }: { ministry: Ministry }) {
+  const { openModal } = useUiState();
+
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
+      onClick={() => openModal("connect")}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") openModal("connect");
+      }}
       whileHover="hover"
       className="group grid cursor-pointer grid-cols-[3rem_1fr_auto] items-center gap-[1rem] border-t border-line px-[0.5rem] py-[1.5rem] transition-colors duration-300 hover:bg-surface sm:grid-cols-[4rem_1fr_20rem_auto] sm:px-[1rem] sm:py-[2rem]"
     >
