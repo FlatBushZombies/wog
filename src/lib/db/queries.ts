@@ -129,3 +129,59 @@ export async function getAttendanceForEvent(eventId: string): Promise<Attendance
     attended: row.attended ?? false,
   }));
 }
+
+export interface MonthlyGrowth {
+  label: string;
+  count: number;
+}
+
+export async function getMemberGrowthByMonth(monthsBack = 6): Promise<MonthlyGrowth[]> {
+  const all = await getAllMembers();
+  const now = new Date();
+
+  return Array.from({ length: monthsBack }, (_, i) => {
+    const offset = monthsBack - 1 - i;
+    const bucket = new Date(now.getFullYear(), now.getMonth() - offset, 1);
+    const count = all.filter((m) => {
+      const created = new Date(m.createdAt);
+      return created.getFullYear() === bucket.getFullYear() && created.getMonth() === bucket.getMonth();
+    }).length;
+    return { label: bucket.toLocaleDateString("en-US", { month: "short" }), count };
+  });
+}
+
+export interface EventAttendanceSummary {
+  id: string;
+  title: string;
+  eventDate: string;
+  attended: number;
+  eligible: number;
+}
+
+export async function getEventAttendanceSummary(limit = 6): Promise<EventAttendanceSummary[]> {
+  const [pastEvents, allMembers] = await Promise.all([getPastEvents(), getAllMembers()]);
+  const recent = pastEvents.slice(0, limit);
+  if (recent.length === 0) return [];
+
+  const attendanceRows = await withRetry(() =>
+    db!
+      .select({ eventId: attendance.eventId, memberId: attendance.memberId })
+      .from(attendance)
+      .where(eq(attendance.attended, true))
+  );
+
+  const attendedByEvent = new Map<string, number>();
+  for (const row of attendanceRows) {
+    attendedByEvent.set(row.eventId, (attendedByEvent.get(row.eventId) ?? 0) + 1);
+  }
+
+  return recent.map((event) => ({
+    id: event.id,
+    title: event.title,
+    eventDate: event.eventDate,
+    attended: attendedByEvent.get(event.id) ?? 0,
+    eligible: event.category
+      ? allMembers.filter((m) => m.category === event.category).length
+      : allMembers.length,
+  }));
+}

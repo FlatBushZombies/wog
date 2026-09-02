@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, ChevronDown, Home, LogOut, Menu, Users, X } from "lucide-react";
+import { BarChart3, Calendar, ChevronDown, Home, LogOut, Menu, Users, X } from "lucide-react";
 import { LogoBadge } from "@/components/ui/LogoBadge";
 import { site } from "@/content/site";
 import { logoutAction } from "@/app/dashboard/(app)/logout-action";
@@ -74,6 +74,20 @@ function NavBody({
       >
         <Home size={18} aria-hidden="true" />
         Overview
+      </Link>
+
+      <Link
+        href="/dashboard/analytics"
+        onClick={onNavigate}
+        className={cn(
+          "mt-[0.125rem] flex items-center gap-[0.625rem] rounded-[0.875rem] px-[0.875rem] py-[0.75rem] text-[0.95rem] font-medium transition-colors",
+          isActive(pathname, "/dashboard/analytics")
+            ? "bg-ink text-white"
+            : "text-ink/75 hover:bg-surface hover:text-ink"
+        )}
+      >
+        <BarChart3 size={18} aria-hidden="true" />
+        Analytics
       </Link>
 
       <SectionLabel>

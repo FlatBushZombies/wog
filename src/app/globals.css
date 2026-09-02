@@ -4,7 +4,7 @@
   --background: #f7f6f2;
   --foreground: #111111;
 
-  --ink: #0a0a0a;
+  --ink: #0a0b10;
 
   --muted: #8b8983;
   --subtle: #b7b4ae;
@@ -14,9 +14,9 @@
   --surface: #f0eee9;
   --surface-2: #e4e1da;
 
-  --accent: #c1272d;
-  --accent-light: #e05257;
-  --accent-dark: #8c161b;
+  --accent: #1b2a6b;
+  --accent-light: #32449e;
+  --accent-dark: #10173f;
 
   --navy: #1b2a6b;
   --navy-light: #32449e;
@@ -41,28 +41,28 @@
   --font-sans: var(--font-onest);
 }
 
-/* Adaptive type scale, base 18px (bumped up from 16px for legibility) */
+/* Adaptive type scale, base 17px */
 @media (max-width: 1920px) {
   html {
-    font-size: 0.9375vw;
+    font-size: 0.885417vw;
   }
 }
 
 @media (max-width: 1440px) {
   html {
-    font-size: 1.25vw;
+    font-size: 1.180556vw;
   }
 }
 
 @media (max-width: 1024px) {
   html {
-    font-size: 1.7578125vw;
+    font-size: 1.660156vw;
   }
 }
 
 @media (max-width: 640px) {
   html {
-    font-size: 5vw;
+    font-size: 4.722222vw;
   }
 }
 

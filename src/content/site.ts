@@ -71,6 +71,15 @@ export const faithBandItems = [
   { label: "Community", variant: "ghost" as const },
 ];
 
+export const leadershipContent = {
+  eyebrow: "Leadership",
+  heading: "A word from our pastor.",
+  quote:
+    "Church was never meant to be a place you just visit — it's a family you belong to. Whatever season you're in, there is room for you here at DMWOG.",
+  name: site.pastor,
+  role: `Lead Pastor, ${site.name}`,
+};
+
 export const communityContent = {
   eyebrow: "Our Community",
   heading: "Faith is lived together.",

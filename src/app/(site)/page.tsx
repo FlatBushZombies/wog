@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { Leadership } from "@/components/sections/Leadership";
 import { FaithBand } from "@/components/sections/FaithBand";
 import { Messages } from "@/components/sections/Messages";
 import { Ministries } from "@/components/sections/Ministries";
@@ -31,6 +32,7 @@ export default async function Home() {
     <>
       <Hero upcomingEvent={upcomingEvent} />
       <About />
+      <Leadership />
       <FaithBand />
       <Messages />
       <Ministries />

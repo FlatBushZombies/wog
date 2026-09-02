@@ -18,7 +18,7 @@ export function useSmoothScroll() {
 }
 
 function applyAdaptiveGrid() {
-  const FONT_BASE = 18;
+  const FONT_BASE = 17;
   const baseWidth = 1920;
   const coef = 0.6666;
   const w = window.innerWidth;
