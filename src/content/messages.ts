@@ -19,7 +19,7 @@ export const messages: Message[] = [
     id: "01",
     title: "When Faith Becomes Action",
     category: "Sunday Message",
-    speaker: "Pastor Michael Dube",
+    speaker: "Pastor Kututwa",
     date: "2026",
     description:
       "Exploring what it means to move from belief to obedience in everyday life.",
@@ -33,7 +33,7 @@ export const messages: Message[] = [
     id: "02",
     title: "Built on the Word",
     category: "Teaching",
-    speaker: "Pastor Michael Dube",
+    speaker: "Pastor Kututwa",
     date: "2026",
     description: "A foundational look at why Scripture anchors everything we do.",
     image: {
@@ -46,7 +46,7 @@ export const messages: Message[] = [
     id: "03",
     title: "Walking Through the Storm",
     category: "Sunday Message",
-    speaker: "Pastor Michael Dube",
+    speaker: "Pastor Kututwa",
     date: "2026",
     description: "Finding steady faith when life feels uncertain.",
     image: {
@@ -59,7 +59,7 @@ export const messages: Message[] = [
     id: "04",
     title: "The Power of Community",
     category: "Special Message",
-    speaker: "Pastor Michael Dube",
+    speaker: "Pastor Kututwa",
     date: "2026",
     description: "Why we were never meant to walk this journey alone.",
     image: {

@@ -30,7 +30,7 @@ export function HeroCard({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "w-full max-w-[21rem] rounded-[0.5rem] border border-white/15 bg-white/10 p-[1.25rem] text-white backdrop-blur-md",
+        "w-full max-w-[21rem] rounded-[0.5rem] bg-navy p-[1.5rem] text-white shadow-[0_20px_50px_rgba(0,0,0,0.35)]",
         className
       )}
     >

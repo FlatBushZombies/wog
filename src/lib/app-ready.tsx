@@ -13,7 +13,7 @@ const AppReadyContext = createContext<AppReadyContextValue>({
 });
 
 export function AppReadyProvider({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(true);
   return (
     <AppReadyContext.Provider value={{ ready, setReady }}>{children}</AppReadyContext.Provider>
   );

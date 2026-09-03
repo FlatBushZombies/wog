@@ -5,7 +5,6 @@ import "../globals.css";
 import { AppReadyProvider } from "@/lib/app-ready";
 import { UiStateProvider } from "@/lib/ui-state";
 import { SmoothScrollProvider } from "@/lib/smooth-scroll";
-import { PageLoader } from "@/components/overlays/PageLoader";
 import { PrayerModal } from "@/components/overlays/PrayerModal";
 import { Header } from "@/components/layout/Header";
 import { NavigationMenu } from "@/components/layout/NavigationMenu";
@@ -59,7 +58,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AppReadyProvider>
           <UiStateProvider>
             <SmoothScrollProvider>
-              <PageLoader />
               <Header />
               <NavigationMenu />
               <PrayerModal />

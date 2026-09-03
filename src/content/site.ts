@@ -13,7 +13,7 @@ export const site = {
   fullName: "Divine Ministry Word of God",
   tagline: "Growing in Christ. Living by Faith. Serving with Purpose.",
   mission: "To know Christ, grow together, and make a difference in our community.",
-  pastor: "Pastor Michael Dube",
+  pastor: "Pastor Kututwa",
   address: "Harare, Zimbabwe",
   serviceTimes: "9:00 AM & 11:30 AM",
   serviceDay: "Sundays",
