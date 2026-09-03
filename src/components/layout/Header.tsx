@@ -35,21 +35,24 @@ export function Header() {
       <div className="shell mt-[1rem] sm:mt-[1.25rem]">
         <div
           className={cn(
-            "flex items-center justify-between rounded-[0.5rem] border border-line px-[1rem] py-[0.75rem] text-ink backdrop-blur-md transition-colors duration-300 sm:px-[1.5rem]",
+            "grid grid-cols-[1fr_auto] items-center rounded-[0.5rem] border border-line px-[1rem] py-[0.75rem] text-ink backdrop-blur-md transition-colors duration-300 sm:px-[1.5rem] md:grid-cols-[1fr_auto_1fr]",
             scrolled || isMenuOpen ? "bg-background/95 shadow-sm" : "bg-background/70"
           )}
         >
           <button
             type="button"
             onClick={() => scrollToSection("#home")}
-            className="flex items-center gap-[0.5rem]"
+            className="flex items-center gap-[0.5rem] justify-self-start"
             aria-label="DMWOG home"
           >
             <LogoBadge size={38} ring />
-            <span className="text-h3">{site.name}</span>
+            <span className="text-h3">
+              {site.name.slice(0, 2)}
+              <span className="text-accent">{site.name.slice(2)}</span>
+            </span>
           </button>
 
-          <nav className="hidden items-center gap-[1.75rem] md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-[1.75rem] justify-self-center md:flex" aria-label="Primary">
             {navLinks.map((link) => (
               <motion.button
                 key={link.label}
@@ -67,7 +70,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-[0.625rem]">
+          <div className="flex items-center gap-[0.625rem] justify-self-end">
             <div className="hidden flex-col items-end rounded-[0.4rem] border border-line px-[0.875rem] py-[0.375rem] text-right leading-[1.15] lg:flex">
               <span className="text-eyebrow opacity-60">
                 {site.serviceDay}

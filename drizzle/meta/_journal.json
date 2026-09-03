@@ -8,6 +8,13 @@
       "when": 1788271626067,
       "tag": "0000_loose_hydra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1788434592316,
+      "tag": "0001_careless_mandrill",
+      "breakpoints": true
     }
   ]
 }

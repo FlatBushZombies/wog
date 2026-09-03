@@ -1,5 +1,5 @@
-import { Eyebrow } from "../ui/Eyebrow";
-import { WordReveal } from "../effects/TextReveal";
+import { SectionHeader } from "../ui/SectionHeader";
+import { Card } from "../ui/Card";
 import { ScrollReveal } from "../effects/ScrollReveal";
 import { AnimatedLink } from "../ui/AnimatedLink";
 import { aboutContent, socialLinks } from "@/content/site";
@@ -36,36 +36,40 @@ function RadialMotif() {
 export function About() {
   return (
     <section id="about" className="bg-background py-[5rem] sm:py-[7rem]">
-      <div className="shell grid grid-cols-1 items-center gap-[3rem] lg:grid-cols-2 lg:gap-[5rem]">
-        <ScrollReveal className="order-2 flex aspect-square max-w-[26rem] items-center justify-center lg:order-1">
-          <RadialMotif />
+      <div className="shell">
+        <ScrollReveal>
+          <SectionHeader
+            eyebrow={aboutContent.eyebrow}
+            heading={aboutContent.heading}
+            subtext={aboutContent.body}
+          />
         </ScrollReveal>
 
-        <div className="order-1 lg:order-2">
-          <Eyebrow>{aboutContent.eyebrow}</Eyebrow>
-          <h2 className="text-h2 mt-[1rem] max-w-[22rem] text-ink">
-            <WordReveal text={aboutContent.heading} />
-          </h2>
-          <p className="text-body-lg mt-[1.5rem] max-w-[26rem] text-muted">
-            {aboutContent.body}
-          </p>
+        <div className="mt-[3.5rem] grid grid-cols-1 gap-[1.5rem] lg:grid-cols-[0.85fr_1.15fr]">
+          <ScrollReveal delay={0.05}>
+            <Card className="flex h-full items-center justify-center p-[2.5rem]">
+              <div className="aspect-square w-full max-w-[16rem]">
+                <RadialMotif />
+              </div>
+            </Card>
+          </ScrollReveal>
 
-          <ScrollReveal delay={0.15} className="mt-[3rem] flex flex-wrap items-center justify-between gap-[1.5rem] border-t border-line pt-[1.75rem]">
-            <div>
-              <p className="text-eyebrow text-ink">
-                {aboutContent.footerLabel}
-              </p>
-              <p className="text-body mt-[0.25rem] text-muted">
-                {aboutContent.footerTags.join(" • ")}
-              </p>
-            </div>
-            <div className="flex items-center gap-[1.25rem]">
-              {socialLinks.map((social) => (
-                <AnimatedLink key={social.label} href={social.href} external className="text-body text-ink">
-                  {social.label}
-                </AnimatedLink>
-              ))}
-            </div>
+          <ScrollReveal delay={0.1}>
+            <Card className="flex h-full flex-col justify-center gap-[1.5rem] p-[2rem] sm:p-[2.5rem]">
+              <div>
+                <p className="text-eyebrow text-ink">{aboutContent.footerLabel}</p>
+                <p className="text-body mt-[0.5rem] text-muted">
+                  {aboutContent.footerTags.join(" • ")}
+                </p>
+              </div>
+              <div className="flex items-center gap-[1.25rem] border-t border-line pt-[1.5rem]">
+                {socialLinks.map((social) => (
+                  <AnimatedLink key={social.label} href={social.href} external className="text-body text-ink">
+                    {social.label}
+                  </AnimatedLink>
+                ))}
+              </div>
+            </Card>
           </ScrollReveal>
         </div>
       </div>

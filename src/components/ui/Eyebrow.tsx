@@ -4,8 +4,8 @@ export function Eyebrow({ children, className, light = false }: { children: Reac
   return (
     <span
       className={cn(
-        "text-eyebrow inline-flex items-center gap-[0.5rem]",
-        light ? "text-white/70" : "text-muted",
+        "text-eyebrow inline-flex items-center gap-[0.5rem] rounded-full px-[1rem] py-[0.5rem]",
+        light ? "bg-white/10 text-white/80" : "bg-accent/10 text-accent",
         className
       )}
     >

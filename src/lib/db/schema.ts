@@ -20,6 +20,7 @@ export const events = pgTable("events", {
   eventDate: date("event_date").notNull(),
   eventTime: text("event_time"),
   location: text("location"),
+  imageUrl: text("image_url"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 

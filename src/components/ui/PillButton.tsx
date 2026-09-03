@@ -5,13 +5,14 @@ import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/lib/smooth-scroll";
 import { ArrowIcon } from "./ArrowIcon";
 
-type Variant = "dark" | "light" | "outline" | "accent";
+type Variant = "dark" | "light" | "outline" | "accent" | "white";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   dark: "bg-ink text-white",
   light: "bg-surface text-ink",
   outline: "border border-line bg-transparent text-ink",
   accent: "bg-accent text-white",
+  white: "bg-white text-accent",
 };
 
 const ARROW_BADGE_CLASSES: Record<Variant, string> = {
@@ -19,6 +20,7 @@ const ARROW_BADGE_CLASSES: Record<Variant, string> = {
   light: "bg-ink/10",
   outline: "bg-ink/5",
   accent: "bg-white/20",
+  white: "bg-accent/10",
 };
 
 interface PillButtonProps {

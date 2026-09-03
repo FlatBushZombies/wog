@@ -16,6 +16,11 @@ const eventSchema = z.object({
   eventDate: z.string().trim().min(1, "Date is required"),
   eventTime: z.string().trim().optional(),
   location: z.string().trim().optional(),
+  imageUrl: z
+    .string()
+    .trim()
+    .optional()
+    .refine((v) => !v || /^https?:\/\/.+/i.test(v), "Image must be a valid URL"),
 });
 
 function parseEventForm(formData: FormData) {
@@ -26,6 +31,7 @@ function parseEventForm(formData: FormData) {
     eventDate: formData.get("eventDate"),
     eventTime: formData.get("eventTime"),
     location: formData.get("location"),
+    imageUrl: formData.get("imageUrl"),
   });
 
   if (!parsed.success) {
@@ -39,6 +45,7 @@ function parseEventForm(formData: FormData) {
     eventDate: parsed.data.eventDate,
     eventTime: parsed.data.eventTime || null,
     location: parsed.data.location || null,
+    imageUrl: parsed.data.imageUrl || null,
   };
 }
 

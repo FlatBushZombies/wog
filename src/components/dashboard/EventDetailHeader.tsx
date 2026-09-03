@@ -43,6 +43,13 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
           <input name="eventTime" defaultValue={event.eventTime ?? ""} className={inputClass} placeholder="Time" />
           <input name="location" defaultValue={event.location ?? ""} className={inputClass} placeholder="Location" />
           <input name="description" defaultValue={event.description ?? ""} className={inputClass} placeholder="Description" />
+          <input
+            name="imageUrl"
+            type="url"
+            defaultValue={event.imageUrl ?? ""}
+            className={`${inputClass} sm:col-span-2`}
+            placeholder="Image URL (optional, e.g. a Pexels photo link)"
+          />
         </div>
         <div className="flex gap-[0.5rem]">
           <button type="submit" className="text-caption rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.5rem] font-medium text-white">
@@ -66,14 +73,24 @@ export function EventDetailHeader({ event }: { event: ChurchEventRow }) {
         ← All events
       </Link>
       <div className="mt-[0.75rem] flex flex-col gap-[1rem] sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h1 className="text-h2 text-ink">{event.title}</h1>
-          <p className="text-body mt-[0.25rem] text-muted">
-            {formatEventDate(event.eventDate)}
-            {event.eventTime ? ` • ${event.eventTime}` : ""}
-            {event.location ? ` • ${event.location}` : ""}
-          </p>
-          {event.description && <p className="text-body mt-[0.5rem] text-ink/80">{event.description}</p>}
+        <div className="flex flex-col gap-[1rem] sm:flex-row sm:items-start">
+          {event.imageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element -- admin-provided arbitrary URL, not an optimized local/known asset
+            <img
+              src={event.imageUrl}
+              alt=""
+              className="h-[6rem] w-[6rem] shrink-0 rounded-[0.4rem] object-cover"
+            />
+          )}
+          <div>
+            <h1 className="text-h2 text-ink">{event.title}</h1>
+            <p className="text-body mt-[0.25rem] text-muted">
+              {formatEventDate(event.eventDate)}
+              {event.eventTime ? ` • ${event.eventTime}` : ""}
+              {event.location ? ` • ${event.location}` : ""}
+            </p>
+            {event.description && <p className="text-body mt-[0.5rem] text-ink/80">{event.description}</p>}
+          </div>
         </div>
         <div className="flex gap-[0.5rem]">
           <button

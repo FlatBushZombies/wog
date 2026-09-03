@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Eyebrow } from "../ui/Eyebrow";
+import { SectionHeader } from "../ui/SectionHeader";
 import { ScrollReveal, ScrollStagger, ScrollStaggerItem } from "../effects/ScrollReveal";
 import { MessageCard } from "./MessageCard";
 import { MessageViewer } from "../overlays/MessageViewer";
@@ -24,19 +24,17 @@ export function Messages() {
   return (
     <section id="messages" className="bg-background py-[5rem] sm:py-[7rem]">
       <div className="shell">
-        <ScrollReveal className="max-w-[32rem]">
-          <Eyebrow>Messages</Eyebrow>
-          <h2 className="text-h2 mt-[1rem] text-ink">
-            Words that change lives.
-          </h2>
-          <p className="text-body-lg mt-[1.25rem] text-muted">
-            Listen, watch and grow through messages from DMWOG.
-          </p>
+        <ScrollReveal>
+          <SectionHeader
+            eyebrow="Messages"
+            heading="Words that change lives."
+            subtext="Listen, watch and grow through messages from DMWOG."
+          />
         </ScrollReveal>
 
         <ScrollStagger className="mt-[3rem] grid grid-cols-1 gap-[1.25rem] sm:grid-cols-2 lg:grid-cols-4">
           {messages.map((message) => (
-            <ScrollStaggerItem key={message.id}>
+            <ScrollStaggerItem key={message.id} className="h-full">
               <MessageCard message={message} onSelect={handleSelect} />
             </ScrollStaggerItem>
           ))}

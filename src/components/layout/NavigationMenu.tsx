@@ -37,7 +37,10 @@ export function NavigationMenu() {
           <div className="shell flex items-center justify-between py-[1.5rem]">
             <div className="flex items-center gap-[0.5rem]">
               <LogoBadge size={38} ring />
-              <span className="text-h3">{site.name}</span>
+              <span className="text-h3">
+                {site.name.slice(0, 2)}
+                <span className="text-accent-light">{site.name.slice(2)}</span>
+              </span>
             </div>
             <button
               type="button"

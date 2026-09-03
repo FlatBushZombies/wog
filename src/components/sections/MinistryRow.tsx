@@ -1,12 +1,26 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import { Music, Sparkles, Baby, Users, HeartHandshake, Globe2 } from "lucide-react";
 import type { Ministry } from "@/content/ministries";
 import { ArrowIcon } from "../ui/ArrowIcon";
+import { IconChip } from "../ui/IconChip";
+import { Card } from "../ui/Card";
 import { useUiState } from "@/lib/ui-state";
+
+const ICONS: Record<string, LucideIcon> = {
+  worship: Music,
+  youth: Sparkles,
+  children: Baby,
+  men: Users,
+  women: HeartHandshake,
+  outreach: Globe2,
+};
 
 export function MinistryRow({ ministry }: { ministry: Ministry }) {
   const { openModal } = useUiState();
+  const Icon = ICONS[ministry.id] ?? Users;
 
   return (
     <motion.div
@@ -16,21 +30,21 @@ export function MinistryRow({ ministry }: { ministry: Ministry }) {
       onKeyDown={(event) => {
         if (event.key === "Enter" || event.key === " ") openModal("connect");
       }}
-      whileHover="hover"
-      className="group grid cursor-pointer grid-cols-[3rem_1fr_auto] items-center gap-[1rem] border-t border-line px-[0.5rem] py-[1.5rem] transition-colors duration-300 hover:bg-surface sm:grid-cols-[4rem_1fr_20rem_auto] sm:px-[1rem] sm:py-[2rem]"
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      className="h-full cursor-pointer"
     >
-      <span className="text-body text-muted">{ministry.number}</span>
-      <h3 className="text-h2 text-ink">
-        {ministry.title}
-      </h3>
-      <p className="text-body hidden text-muted sm:block">{ministry.description}</p>
-      <motion.span
-        variants={{ hover: { x: 5 } }}
-        transition={{ type: "spring", stiffness: 320, damping: 20 }}
-        className="flex h-[2.5rem] w-[2.5rem] shrink-0 items-center justify-center rounded-[0.4rem] border border-line text-ink"
-      >
-        <ArrowIcon />
-      </motion.span>
+      <Card className="flex h-full flex-col p-[1.75rem] transition-colors duration-300 hover:border-accent/30">
+        <div className="flex items-start justify-between">
+          <IconChip icon={Icon} />
+          <span className="text-caption text-subtle">{ministry.number}</span>
+        </div>
+        <h3 className="text-h3 mt-[1.25rem] text-ink">{ministry.title}</h3>
+        <p className="text-body mt-[0.5rem] flex-1 text-muted">{ministry.description}</p>
+        <span className="mt-[1.25rem] flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-[0.4rem] border border-line text-ink">
+          <ArrowIcon />
+        </span>
+      </Card>
     </motion.div>
   );
 }

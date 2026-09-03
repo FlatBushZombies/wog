@@ -1,10 +1,16 @@
 "use client";
 
+import type { LucideIcon } from "lucide-react";
+import { Share2, ArrowRight } from "lucide-react";
 import { site, socialLinks, footerContent } from "@/content/site";
 import { PillButton } from "../ui/PillButton";
 import { AnimatedLink } from "../ui/AnimatedLink";
 import { LogoBadge } from "../ui/LogoBadge";
 import { useUiState } from "@/lib/ui-state";
+
+const SOCIAL_ICONS: Record<string, LucideIcon> = {
+  Facebook: Share2,
+};
 
 export function Footer() {
   const { openModal } = useUiState();
@@ -28,6 +34,23 @@ export function Footer() {
               <p className="text-h3">{site.name}</p>
             </div>
             <p className="text-body max-w-[14rem] text-white/60">{site.tagline}</p>
+            <div className="mt-[1.25rem] flex items-center gap-[0.625rem]">
+              {socialLinks.map((social) => {
+                const Icon = SOCIAL_ICONS[social.label];
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full border border-white/15 text-white/70 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                  >
+                    {Icon ? <Icon size={16} aria-hidden="true" /> : social.label.charAt(0)}
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           <div className="flex flex-col gap-[0.625rem]">
@@ -37,17 +60,6 @@ export function Footer() {
             {footerContent.explore.map((item) => (
               <AnimatedLink key={item.label} href={item.href} className="text-body text-white/80">
                 {item.label}
-              </AnimatedLink>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-[0.625rem]">
-            <p className="text-eyebrow mb-[0.25rem] text-white/40">
-              Connect
-            </p>
-            {socialLinks.map((social) => (
-              <AnimatedLink key={social.label} href={social.href} external className="text-body text-white/80">
-                {social.label}
               </AnimatedLink>
             ))}
             <button
@@ -66,6 +78,32 @@ export function Footer() {
             <p className="text-body text-white/80">{site.address}</p>
             <p className="text-body text-white/80">{site.serviceDay}</p>
             <p className="text-body text-white/80">{site.serviceTimes}</p>
+          </div>
+
+          <div className="flex flex-col gap-[0.75rem]">
+            <p className="text-eyebrow mb-[0.25rem] text-white/40">
+              Stay Connected
+            </p>
+            <p className="text-body text-white/60">Get news on messages and events.</p>
+            <form
+              onSubmit={(event) => event.preventDefault()}
+              className="flex items-center gap-[0.5rem] rounded-[0.4rem] border border-white/15 bg-white/5 p-[0.375rem] pl-[0.875rem]"
+            >
+              <input
+                type="email"
+                required
+                placeholder="Email address"
+                aria-label="Email address"
+                className="text-body min-w-0 flex-1 bg-transparent text-white placeholder:text-white/40 focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="flex h-[2.25rem] w-[2.25rem] shrink-0 items-center justify-center rounded-[0.3rem] bg-accent text-white transition-transform duration-300 hover:scale-[1.06]"
+              >
+                <ArrowRight size={16} aria-hidden="true" />
+              </button>
+            </form>
           </div>
         </div>
 

@@ -27,13 +27,23 @@ export function EventList({ title, events }: { title: string; events: ChurchEven
               href={`/dashboard/events/${event.id}`}
               className="flex flex-col gap-[0.375rem] rounded-[0.375rem] border border-line bg-white p-[1rem] transition-colors hover:border-subtle sm:flex-row sm:items-center sm:justify-between"
             >
-              <div>
-                <p className="text-body font-medium text-ink">{event.title}</p>
-                <p className="text-caption text-muted">
-                  {formatEventDate(event.eventDate)}
-                  {event.eventTime ? ` • ${event.eventTime}` : ""}
-                  {event.location ? ` • ${event.location}` : ""}
-                </p>
+              <div className="flex items-center gap-[0.875rem]">
+                {event.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element -- admin-provided arbitrary URL
+                  <img
+                    src={event.imageUrl}
+                    alt=""
+                    className="h-[3rem] w-[3rem] shrink-0 rounded-[0.4rem] object-cover"
+                  />
+                )}
+                <div>
+                  <p className="text-body font-medium text-ink">{event.title}</p>
+                  <p className="text-caption text-muted">
+                    {formatEventDate(event.eventDate)}
+                    {event.eventTime ? ` • ${event.eventTime}` : ""}
+                    {event.location ? ` • ${event.location}` : ""}
+                  </p>
+                </div>
               </div>
               <span className="text-caption font-medium uppercase tracking-[0.06em] text-accent">
                 {event.category ? CATEGORY_LABELS[event.category] : "All Ministries"}

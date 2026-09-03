@@ -27,7 +27,7 @@ export function VisitCTA() {
           </h2>
           <p className="text-body-lg mt-[1.25rem] text-white/75">{visitContent.body}</p>
           <div className="mt-[2rem] flex flex-wrap gap-[0.875rem]">
-            <PillButton variant="light" onClick={() => openModal("visit")}>
+            <PillButton variant="white" onClick={() => openModal("visit")}>
               {visitContent.primaryCta}
             </PillButton>
             <PillButton

@@ -45,6 +45,12 @@ export function EventForm() {
         <input name="eventTime" className={inputClass} placeholder="Time (e.g. 9:00 AM)" />
         <input name="location" className={inputClass} placeholder="Location (optional)" />
         <input name="description" className={inputClass} placeholder="Description (optional)" />
+        <input
+          name="imageUrl"
+          type="url"
+          className={`${inputClass} sm:col-span-2`}
+          placeholder="Image URL (optional, e.g. a Pexels photo link)"
+        />
       </div>
       <div className="flex gap-[0.5rem]">
         <button type="submit" className="text-caption rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.5rem] font-medium text-white">
