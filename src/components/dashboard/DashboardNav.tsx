@@ -19,6 +19,7 @@ const MINISTRY_ITEMS: Array<{ label: string; href: string; category: Category }>
 
 const TAB_ITEMS: Array<{ label: string; href: string; icon: typeof Home }> = [
   { label: "Overview", href: "/dashboard", icon: Home },
+  { label: "All Members", href: "/dashboard/members", icon: Users },
   { label: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
   { label: CATEGORY_LABELS.women, href: "/dashboard/women", icon: Users },
   { label: CATEGORY_LABELS.men, href: "/dashboard/men", icon: Users },
@@ -83,6 +84,16 @@ function NavBody({
       <Link href="/dashboard" onClick={onNavigate} className={cn("mt-[0.75rem]", navItemClass(isActive(pathname, "/dashboard")))}>
         <Home size={18} aria-hidden="true" />
         Overview
+      </Link>
+
+      <Link
+        href="/dashboard/members"
+        onClick={onNavigate}
+        className={cn("mt-[0.125rem]", navItemClass(isActive(pathname, "/dashboard/members")))}
+      >
+        <Users size={18} aria-hidden="true" />
+        All Members
+        {totalMembers > 0 && <CountBadge count={totalMembers} />}
       </Link>
 
       <Link

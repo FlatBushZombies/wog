@@ -26,6 +26,9 @@ const memberSchema = z.object({
     .transform((v) => (v ? v : undefined))
     .refine((v) => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), "Enter a valid email"),
   phone: z.string().trim().optional(),
+  church: z.string().trim().optional().transform((v) => (v && v.length > 0 ? v : "Word of Grace")),
+  branch: z.string().trim().optional().transform((v) => (v && v.length > 0 ? v : "Main Branch")),
+  addedBy: z.string().trim().optional(),
   notes: z.string().trim().optional(),
   category: categorySchema,
 });
@@ -33,16 +36,20 @@ const memberSchema = z.object({
 function revalidateCategory(category: z.infer<typeof categorySchema>) {
   revalidatePath(CATEGORY_PATH[category]);
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/members");
 }
 
 export async function createMember(formData: FormData) {
-  await requireSession();
+  const session = await requireSession();
   const db = requireDb();
 
   const parsed = memberSchema.safeParse({
     fullName: formData.get("fullName"),
     email: formData.get("email"),
     phone: formData.get("phone"),
+    church: formData.get("church"),
+    branch: formData.get("branch"),
+    addedBy: formData.get("addedBy") || session?.role || "Admin",
     notes: formData.get("notes"),
     category: formData.get("category"),
   });
@@ -56,6 +63,9 @@ export async function createMember(formData: FormData) {
       fullName: parsed.data.fullName,
       email: parsed.data.email ?? null,
       phone: parsed.data.phone || null,
+      church: parsed.data.church,
+      branch: parsed.data.branch,
+      addedBy: parsed.data.addedBy || null,
       notes: parsed.data.notes || null,
       category: parsed.data.category,
     })
@@ -75,6 +85,9 @@ export async function updateMember(formData: FormData) {
     fullName: formData.get("fullName"),
     email: formData.get("email"),
     phone: formData.get("phone"),
+    church: formData.get("church"),
+    branch: formData.get("branch"),
+    addedBy: formData.get("addedBy"),
     notes: formData.get("notes"),
     category: formData.get("category"),
   });
@@ -90,6 +103,9 @@ export async function updateMember(formData: FormData) {
         fullName: parsed.data.fullName,
         email: parsed.data.email ?? null,
         phone: parsed.data.phone || null,
+        church: parsed.data.church,
+        branch: parsed.data.branch,
+        addedBy: parsed.data.addedBy || null,
         notes: parsed.data.notes || null,
         category: parsed.data.category,
       })

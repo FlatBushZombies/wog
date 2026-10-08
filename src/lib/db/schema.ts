@@ -8,6 +8,9 @@ export const members = pgTable("members", {
   email: text("email"),
   phone: text("phone"),
   category: categoryEnum("category").notNull(),
+  church: text("church").notNull().default("Word of Grace"),
+  branch: text("branch").notNull().default("Main Branch"),
+  addedBy: text("added_by"),
   notes: text("notes"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });

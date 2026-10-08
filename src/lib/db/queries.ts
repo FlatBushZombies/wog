@@ -64,12 +64,39 @@ export async function getDashboardStats() {
   const [all, upcomingEvent] = await Promise.all([getAllMembers(), getNextUpcomingEvent()]);
 
   const counts: Record<Category, number> = { women: 0, men: 0, youth: 0, sunday_school: 0 };
-  for (const m of all) counts[m.category as Category]++;
+  const churches = new Set<string>();
+  const branches = new Set<string>();
+
+  for (const m of all) {
+    if (m.category && counts[m.category as Category] !== undefined) {
+      counts[m.category as Category]++;
+    }
+    if (m.church) churches.add(m.church);
+    if (m.branch) branches.add(m.branch);
+  }
 
   return {
     totalMembers: all.length,
     counts,
+    totalChurches: churches.size,
+    totalBranches: branches.size,
+    churches: Array.from(churches).sort(),
+    branches: Array.from(branches).sort(),
     upcomingEvent,
+  };
+}
+
+export async function getChurchAndBranchLists() {
+  const all = await getAllMembers();
+  const churches = new Set<string>();
+  const branches = new Set<string>();
+  for (const m of all) {
+    if (m.church) churches.add(m.church);
+    if (m.branch) branches.add(m.branch);
+  }
+  return {
+    churches: Array.from(churches).sort(),
+    branches: Array.from(branches).sort(),
   };
 }
 

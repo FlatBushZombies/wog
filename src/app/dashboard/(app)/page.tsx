@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Building2, Calendar, MapPin, Users } from "lucide-react";
 import { getDashboardStats, getRecentMembers, getUpcomingEvents } from "@/lib/db/queries";
 import type { Member, ChurchEventRow } from "@/lib/db/schema";
 import { StatCard } from "@/components/dashboard/StatCard";
@@ -8,6 +8,10 @@ import { CATEGORY_LABELS } from "@/lib/db/schema";
 const EMPTY_STATS = {
   totalMembers: 0,
   counts: { women: 0, men: 0, youth: 0, sunday_school: 0 },
+  totalChurches: 0,
+  totalBranches: 0,
+  churches: [],
+  branches: [],
   upcomingEvent: null,
 };
 
@@ -41,16 +45,35 @@ export default async function DashboardOverviewPage() {
 
   return (
     <div>
-      <h1 className="text-h1 text-ink">Overview</h1>
-      <p className="text-body-lg mt-[0.375rem] text-muted">
-        A snapshot of {"DMWOG's"} members and upcoming events.
-      </p>
+      <div className="flex flex-col gap-[0.75rem] sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-h1 text-ink">Overview</h1>
+          <p className="text-body-lg mt-[0.375rem] text-muted">
+            A snapshot of {"DMWOG's"} members, churches, branches, and upcoming events.
+          </p>
+        </div>
+        <Link
+          href="/dashboard/members"
+          className="text-body shrink-0 rounded-[0.4rem] bg-ink px-[1.125rem] py-[0.625rem] font-medium text-white hover:bg-ink/90"
+        >
+          View All Members ({stats.totalMembers})
+        </Link>
+      </div>
 
       {hasPartialError && (
         <p className="text-body mt-[1rem] rounded-[0.375rem] border border-accent/30 bg-accent/10 px-[1rem] py-[0.75rem] font-medium text-accent-dark">
           Some data couldn&apos;t load just now — the database connection blipped. Refresh to try again.
         </p>
       )}
+
+      <div className="mt-[1.5rem] grid grid-cols-2 gap-[1rem] sm:grid-cols-3 lg:grid-cols-6">
+        <StatCard label="Total Members" value={stats.totalMembers} icon={Users} accent />
+        <StatCard label="Churches" value={stats.totalChurches} icon={Building2} />
+        <StatCard label="Branches" value={stats.totalBranches} icon={MapPin} />
+        {(Object.keys(CATEGORY_LABELS) as Array<keyof typeof CATEGORY_LABELS>).map((key) => (
+          <StatCard key={key} label={CATEGORY_LABELS[key]} value={stats.counts[key]} />
+        ))}
+      </div>
 
       <div className="mt-[1.75rem] rounded-[0.375rem] border border-line bg-white p-[1.5rem]">
         <p className="text-eyebrow text-accent">Next Upcoming Event</p>
@@ -90,18 +113,13 @@ export default async function DashboardOverviewPage() {
         )}
       </div>
 
-      <div className="mt-[1.5rem] grid grid-cols-2 gap-[1rem] sm:grid-cols-3 lg:grid-cols-5">
-        <StatCard label="Total Members" value={stats.totalMembers} icon={Users} accent />
-        {(Object.keys(CATEGORY_LABELS) as Array<keyof typeof CATEGORY_LABELS>).map((key) => (
-          <StatCard key={key} label={CATEGORY_LABELS[key]} value={stats.counts[key]} />
-        ))}
-      </div>
-
       <div className="mt-[1.5rem] grid grid-cols-1 gap-[1rem] lg:grid-cols-2">
         <div className="rounded-[0.375rem] border border-line bg-white p-[1.5rem]">
           <div className="flex items-center justify-between">
-            <h2 className="text-h3 text-ink">Recently Added</h2>
-            <span className="text-body text-muted">{recentMembers.length}</span>
+            <h2 className="text-h3 text-ink">Recently Added Members</h2>
+            <Link href="/dashboard/members" className="text-body font-medium text-ink underline">
+              See all ({stats.totalMembers})
+            </Link>
           </div>
           <div className="mt-[1rem] flex flex-col gap-[0.75rem]">
             {recentMembers.length === 0 ? (
@@ -110,13 +128,16 @@ export default async function DashboardOverviewPage() {
               </p>
             ) : (
               recentMembers.map((member) => (
-                <div key={member.id} className="flex items-center justify-between gap-[0.75rem]">
+                <div key={member.id} className="flex flex-col gap-[0.25rem] rounded-[0.4rem] border border-line/60 p-[0.75rem] sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">
-                    <p className="text-body truncate font-medium text-ink">{member.fullName}</p>
+                    <p className="text-body truncate font-semibold text-ink">{member.fullName}</p>
                     <p className="text-caption text-muted">
-                      {CATEGORY_LABELS[member.category]} · Added {formatJoined(member.createdAt)}
+                      {member.church || "Word of Grace"} • {member.branch || "Main Branch"}
                     </p>
                   </div>
+                  <span className="text-caption shrink-0 text-muted">
+                    {CATEGORY_LABELS[member.category]} · {formatJoined(member.createdAt)}
+                  </span>
                 </div>
               ))
             )}
