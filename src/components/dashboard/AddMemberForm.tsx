@@ -6,7 +6,7 @@ import type { Category } from "@/lib/db/queries";
 import { CATEGORY_LABELS } from "@/lib/db/schema";
 
 const inputClass =
-  "text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-ink outline-none focus-visible:border-accent";
+  "text-[16px] sm:text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.625rem] text-ink outline-none focus-visible:border-accent";
 
 export function AddMemberForm({
   category,
@@ -19,14 +19,18 @@ export function AddMemberForm({
 }) {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   if (!open) {
     return (
       <button
         type="button"
-        onClick={() => setOpen(true)}
-        className="text-body flex items-center gap-[0.5rem] rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.625rem] font-medium text-white transition-transform duration-300 hover:scale-[1.03]"
+        onClick={() => {
+          setErrorMessage(null);
+          setOpen(true);
+        }}
+        className="text-body min-h-[44px] flex items-center justify-center gap-[0.5rem] rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.625rem] font-medium text-white transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
       >
         <span className="text-[1.2rem] leading-none">+</span> Add Member
       </button>
@@ -38,22 +42,35 @@ export function AddMemberForm({
       ref={formRef}
       action={async (formData) => {
         setIsSubmitting(true);
+        setErrorMessage(null);
         try {
-          await createMember(formData);
-          formRef.current?.reset();
-          setOpen(false);
+          const res = await createMember(formData);
+          if (!res.success) {
+            setErrorMessage(res.error || "Failed to save member");
+          } else {
+            formRef.current?.reset();
+            setOpen(false);
+          }
         } catch (err: unknown) {
-          alert(err instanceof Error ? err.message : "Failed to add member");
+          setErrorMessage(err instanceof Error ? err.message : "An unexpected error occurred");
         } finally {
           setIsSubmitting(false);
         }
       }}
-      className="flex flex-col gap-[0.875rem] rounded-[0.5rem] border border-line bg-white p-[1.25rem] shadow-sm"
+      className="flex flex-col gap-[0.875rem] rounded-[0.5rem] border border-line bg-white p-[1rem] shadow-sm sm:p-[1.25rem]"
     >
       <div className="flex items-center justify-between border-b border-line pb-[0.75rem]">
-        <h3 className="text-h3 text-ink">Add New Member</h3>
-        <p className="text-caption text-muted">Fill details to register a church member</p>
+        <div>
+          <h3 className="text-h3 text-ink">Add New Member</h3>
+          <p className="text-caption text-muted">Fill details to register a church member</p>
+        </div>
       </div>
+
+      {errorMessage && (
+        <div className="rounded-[0.375rem] border border-red-200 bg-red-50 p-[0.75rem] text-caption font-medium text-red-700">
+          {errorMessage}
+        </div>
+      )}
 
       {category ? (
         <input type="hidden" name="category" value={category} />
@@ -109,11 +126,11 @@ export function AddMemberForm({
         </div>
       </div>
 
-      <div className="flex gap-[0.625rem] pt-[0.25rem]">
+      <div className="flex flex-wrap gap-[0.625rem] pt-[0.25rem]">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="text-caption rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.625rem] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+          className="text-body min-h-[44px] flex-1 rounded-[0.4rem] bg-ink px-[1.25rem] py-[0.625rem] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:flex-initial"
         >
           {isSubmitting ? "Saving..." : "Save Member"}
         </button>
@@ -121,7 +138,7 @@ export function AddMemberForm({
           type="button"
           disabled={isSubmitting}
           onClick={() => setOpen(false)}
-          className="text-caption rounded-[0.4rem] border border-line px-[1.25rem] py-[0.625rem] font-medium text-muted hover:bg-surface"
+          className="text-body min-h-[44px] flex-1 rounded-[0.4rem] border border-line px-[1.25rem] py-[0.625rem] font-medium text-muted hover:bg-surface sm:flex-initial"
         >
           Cancel
         </button>

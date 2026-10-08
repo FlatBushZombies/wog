@@ -39,67 +39,33 @@ function revalidateCategory(category: z.infer<typeof categorySchema>) {
   revalidatePath("/dashboard/members");
 }
 
-export async function createMember(formData: FormData) {
-  const session = await requireSession();
-  const db = requireDb();
+export type MemberActionResponse = {
+  success: boolean;
+  error?: string;
+};
 
-  const parsed = memberSchema.safeParse({
-    fullName: formData.get("fullName"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    church: formData.get("church"),
-    branch: formData.get("branch"),
-    addedBy: formData.get("addedBy") || session?.role || "Admin",
-    notes: formData.get("notes"),
-    category: formData.get("category"),
-  });
+export async function createMember(formData: FormData): Promise<MemberActionResponse> {
+  try {
+    const session = await requireSession();
+    const db = requireDb();
 
-  if (!parsed.success) {
-    throw new Error(parsed.error.issues[0]?.message ?? "Invalid member details");
-  }
+    const parsed = memberSchema.safeParse({
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      church: formData.get("church"),
+      branch: formData.get("branch"),
+      addedBy: formData.get("addedBy") || session?.role || "Admin",
+      notes: formData.get("notes"),
+      category: formData.get("category"),
+    });
 
-  await withRetry(() =>
-    db.insert(members).values({
-      fullName: parsed.data.fullName,
-      email: parsed.data.email ?? null,
-      phone: parsed.data.phone || null,
-      church: parsed.data.church,
-      branch: parsed.data.branch,
-      addedBy: parsed.data.addedBy || null,
-      notes: parsed.data.notes || null,
-      category: parsed.data.category,
-    })
-  );
+    if (!parsed.success) {
+      return { success: false, error: parsed.error.issues[0]?.message ?? "Invalid member details" };
+    }
 
-  revalidateCategory(parsed.data.category);
-}
-
-export async function updateMember(formData: FormData) {
-  await requireSession();
-  const db = requireDb();
-
-  const id = String(formData.get("id") ?? "");
-  if (!id) throw new Error("Missing member id");
-
-  const parsed = memberSchema.safeParse({
-    fullName: formData.get("fullName"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    church: formData.get("church"),
-    branch: formData.get("branch"),
-    addedBy: formData.get("addedBy"),
-    notes: formData.get("notes"),
-    category: formData.get("category"),
-  });
-
-  if (!parsed.success) {
-    throw new Error(parsed.error.issues[0]?.message ?? "Invalid member details");
-  }
-
-  await withRetry(() =>
-    db
-      .update(members)
-      .set({
+    await withRetry(() =>
+      db.insert(members).values({
         fullName: parsed.data.fullName,
         email: parsed.data.email ?? null,
         phone: parsed.data.phone || null,
@@ -109,21 +75,88 @@ export async function updateMember(formData: FormData) {
         notes: parsed.data.notes || null,
         category: parsed.data.category,
       })
-      .where(eq(members.id, id))
-  );
+    );
 
-  revalidateCategory(parsed.data.category);
+    revalidateCategory(parsed.data.category);
+    return { success: true };
+  } catch (err: unknown) {
+    console.error("createMember error:", err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to create member due to a database error.",
+    };
+  }
 }
 
-export async function deleteMember(formData: FormData) {
-  await requireSession();
-  const db = requireDb();
+export async function updateMember(formData: FormData): Promise<MemberActionResponse> {
+  try {
+    await requireSession();
+    const db = requireDb();
 
-  const id = String(formData.get("id") ?? "");
-  const category = categorySchema.parse(formData.get("category"));
-  if (!id) throw new Error("Missing member id");
+    const id = String(formData.get("id") ?? "");
+    if (!id) return { success: false, error: "Missing member id" };
 
-  await withRetry(() => db.delete(members).where(eq(members.id, id)));
+    const parsed = memberSchema.safeParse({
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      church: formData.get("church"),
+      branch: formData.get("branch"),
+      addedBy: formData.get("addedBy"),
+      notes: formData.get("notes"),
+      category: formData.get("category"),
+    });
 
-  revalidateCategory(category);
+    if (!parsed.success) {
+      return { success: false, error: parsed.error.issues[0]?.message ?? "Invalid member details" };
+    }
+
+    await withRetry(() =>
+      db
+        .update(members)
+        .set({
+          fullName: parsed.data.fullName,
+          email: parsed.data.email ?? null,
+          phone: parsed.data.phone || null,
+          church: parsed.data.church,
+          branch: parsed.data.branch,
+          addedBy: parsed.data.addedBy || null,
+          notes: parsed.data.notes || null,
+          category: parsed.data.category,
+        })
+        .where(eq(members.id, id))
+    );
+
+    revalidateCategory(parsed.data.category);
+    return { success: true };
+  } catch (err: unknown) {
+    console.error("updateMember error:", err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to update member due to a server error.",
+    };
+  }
+}
+
+export async function deleteMember(formData: FormData): Promise<MemberActionResponse> {
+  try {
+    await requireSession();
+    const db = requireDb();
+
+    const id = String(formData.get("id") ?? "");
+    const categoryResult = categorySchema.safeParse(formData.get("category"));
+    if (!id) return { success: false, error: "Missing member id" };
+    if (!categoryResult.success) return { success: false, error: "Invalid category" };
+
+    await withRetry(() => db.delete(members).where(eq(members.id, id)));
+
+    revalidateCategory(categoryResult.data);
+    return { success: true };
+  } catch (err: unknown) {
+    console.error("deleteMember error:", err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : "Failed to delete member due to a server error.",
+    };
+  }
 }

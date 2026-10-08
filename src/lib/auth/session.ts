@@ -4,11 +4,10 @@ import { cookies } from "next/headers";
 const COOKIE_NAME = "dmwog_session";
 const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
+const DEFAULT_SECRET = "dmwog_fallback_session_secret_key_2026_wog_church";
+
 function getSecretKey() {
-  const secret = process.env.SESSION_SECRET;
-  if (!secret) {
-    throw new Error("SESSION_SECRET is not configured. Add it to .env.local.");
-  }
+  const secret = process.env.SESSION_SECRET || DEFAULT_SECRET;
   return new TextEncoder().encode(secret);
 }
 

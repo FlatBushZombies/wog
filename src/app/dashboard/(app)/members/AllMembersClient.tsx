@@ -10,7 +10,7 @@ import { Building2, Filter, MapPin, Search, Users } from "lucide-react";
 import { StatCard } from "@/components/dashboard/StatCard";
 
 const inputClass =
-  "text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-ink outline-none focus-visible:border-accent";
+  "text-[16px] sm:text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.625rem] text-ink outline-none focus-visible:border-accent";
 
 export function AllMembersClient({
   initialMembers,
@@ -83,9 +83,9 @@ export function AllMembersClient({
   }, [branches, initialMembers]);
 
   return (
-    <div className="flex flex-col gap-[1.5rem]">
+    <div className="flex flex-col gap-[1.25rem] sm:gap-[1.5rem]">
       {/* Header & Primary Action */}
-      <div className="flex flex-col gap-[1rem] md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-[1rem] sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-h1 text-ink">All Members Directory</h1>
           <p className="text-body-lg mt-[0.375rem] text-muted">
@@ -98,7 +98,7 @@ export function AllMembersClient({
       </div>
 
       {/* Overview Stat Cards */}
-      <div className="grid grid-cols-2 gap-[1rem] sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-[0.75rem] sm:grid-cols-4 sm:gap-[1rem]">
         <StatCard label="Total Members" value={initialMembers.length} icon={Users} accent />
         <StatCard label="Churches" value={uniqueChurches.length} icon={Building2} />
         <StatCard label="Branches" value={uniqueBranches.length} icon={MapPin} />
@@ -106,16 +106,16 @@ export function AllMembersClient({
       </div>
 
       {/* Search & Filter Controls */}
-      <div className="rounded-[0.5rem] border border-line bg-white p-[1.25rem] shadow-sm">
-        <div className="grid grid-cols-1 gap-[0.875rem] md:grid-cols-4">
+      <div className="rounded-[0.5rem] border border-line bg-white p-[1rem] sm:p-[1.25rem] shadow-sm">
+        <div className="grid grid-cols-1 gap-[0.75rem] sm:grid-cols-2 lg:grid-cols-4">
           {/* Search Box */}
-          <div className="relative md:col-span-2">
+          <div className="relative sm:col-span-2 lg:col-span-2">
             <Search size={18} className="absolute left-[0.75rem] top-1/2 -translate-y-1/2 text-muted" aria-hidden="true" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by name, church, branch, phone, or email..."
+              placeholder="Search by name, church, branch, phone..."
               className={inputClass + " w-full pl-[2.375rem]"}
             />
           </div>
@@ -125,7 +125,7 @@ export function AllMembersClient({
             <select
               value={selectedChurch}
               onChange={(e) => setSelectedChurch(e.target.value)}
-              className={inputClass + " w-full font-medium text-ink"}
+              className={inputClass + " w-full font-medium text-ink min-h-[44px]"}
             >
               <option value="all">All Churches ({uniqueChurches.length})</option>
               {uniqueChurches.map((church) => (
@@ -141,7 +141,7 @@ export function AllMembersClient({
             <select
               value={selectedBranch}
               onChange={(e) => setSelectedBranch(e.target.value)}
-              className={inputClass + " w-full font-medium text-ink"}
+              className={inputClass + " w-full font-medium text-ink min-h-[44px]"}
             >
               <option value="all">All Branches ({uniqueBranches.length})</option>
               {uniqueBranches.map((b) => (
@@ -153,27 +153,27 @@ export function AllMembersClient({
           </div>
         </div>
 
-        <div className="mt-[0.875rem] flex flex-wrap items-center justify-between gap-[0.75rem] border-t border-line/60 pt-[0.875rem]">
-          {/* Category Quick Filter Pills */}
-          <div className="flex flex-wrap items-center gap-[0.5rem]">
-            <span className="text-caption font-semibold text-muted">Ministry:</span>
+        <div className="mt-[0.875rem] flex flex-col gap-[0.75rem] border-t border-line/60 pt-[0.875rem] sm:flex-row sm:items-center sm:justify-between">
+          {/* Category Quick Filter Pills (Horizontal scroll on small screens) */}
+          <div className="flex items-center gap-[0.5rem] overflow-x-auto pb-[0.25rem] sm:pb-0 scrollbar-none">
+            <span className="text-caption font-semibold shrink-0 text-muted">Ministry:</span>
             <button
               type="button"
               onClick={() => setSelectedCategory("all")}
-              className={`text-caption rounded-full px-[0.75rem] py-[0.25rem] font-medium transition-colors ${
+              className={`text-caption min-h-[36px] shrink-0 rounded-full px-[0.875rem] py-[0.25rem] font-medium transition-colors ${
                 selectedCategory === "all"
                   ? "bg-accent text-white"
                   : "bg-surface text-ink hover:bg-line"
               }`}
             >
-              All Ministries
+              All
             </button>
             {(Object.keys(CATEGORY_LABELS) as Category[]).map((cat) => (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`text-caption rounded-full px-[0.75rem] py-[0.25rem] font-medium transition-colors ${
+                className={`text-caption min-h-[36px] shrink-0 rounded-full px-[0.875rem] py-[0.25rem] font-medium transition-colors ${
                   selectedCategory === cat
                     ? "bg-accent text-white"
                     : "bg-surface text-ink hover:bg-line"
@@ -185,12 +185,12 @@ export function AllMembersClient({
           </div>
 
           {/* Sort By Selector */}
-          <div className="flex items-center gap-[0.5rem]">
+          <div className="flex shrink-0 items-center justify-between sm:justify-end gap-[0.5rem]">
             <span className="text-caption font-semibold text-muted">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="text-caption rounded-[0.4rem] border border-line bg-white px-[0.625rem] py-[0.375rem] font-medium text-ink"
+              className="text-[15px] sm:text-caption rounded-[0.4rem] border border-line bg-white px-[0.625rem] py-[0.5rem] font-medium text-ink min-h-[40px]"
             >
               <option value="name_asc">Name (A - Z)</option>
               <option value="name_desc">Name (Z - A)</option>

@@ -15,6 +15,13 @@
       "when": 1788434592316,
       "tag": "0001_careless_mandrill",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791463513083,
+      "tag": "0002_shallow_ben_urich",
+      "breakpoints": true
     }
   ]
 }

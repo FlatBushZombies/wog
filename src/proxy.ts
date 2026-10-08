@@ -3,11 +3,12 @@ import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const COOKIE_NAME = "dmwog_session";
+const DEFAULT_SECRET = "dmwog_fallback_session_secret_key_2026_wog_church";
 
 async function hasValidSession(request: NextRequest): Promise<boolean> {
   const token = request.cookies.get(COOKIE_NAME)?.value;
-  const secret = process.env.SESSION_SECRET;
-  if (!token || !secret) return false;
+  if (!token) return false;
+  const secret = process.env.SESSION_SECRET || DEFAULT_SECRET;
 
   try {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));

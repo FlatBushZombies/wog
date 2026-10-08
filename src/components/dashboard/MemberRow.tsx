@@ -8,22 +8,33 @@ import { updateMember, deleteMember } from "@/app/dashboard/(app)/members-action
 import { Building2, MapPin, UserCheck } from "lucide-react";
 
 const inputClass =
-  "text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.5rem] text-ink outline-none focus-visible:border-accent";
+  "text-[16px] sm:text-body rounded-[0.4rem] border border-line bg-white px-[0.75rem] py-[0.625rem] text-ink outline-none focus-visible:border-accent";
 
 export function MemberRow({ member }: { member: Member }) {
   const [editing, setEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   if (editing) {
     return (
       <form
         action={async (formData) => {
-          await updateMember(formData);
-          setEditing(false);
+          setErrorMessage(null);
+          const res = await updateMember(formData);
+          if (!res.success) {
+            setErrorMessage(res.error || "Failed to update member");
+          } else {
+            setEditing(false);
+          }
         }}
-        className="flex flex-col gap-[0.75rem] rounded-[0.5rem] border border-line bg-surface p-[1.25rem]"
+        className="flex flex-col gap-[0.75rem] rounded-[0.5rem] border border-line bg-surface p-[1rem] sm:p-[1.25rem]"
       >
         <input type="hidden" name="id" value={member.id} />
+        {errorMessage && (
+          <div className="rounded-[0.375rem] border border-red-200 bg-red-50 p-[0.75rem] text-caption font-medium text-red-700">
+            {errorMessage}
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
           <div>
             <label className="text-caption mb-[0.25rem] block font-medium text-ink">Full Name</label>
@@ -60,14 +71,14 @@ export function MemberRow({ member }: { member: Member }) {
             <input name="notes" defaultValue={member.notes ?? ""} className={inputClass + " w-full"} placeholder="Notes" />
           </div>
         </div>
-        <div className="flex gap-[0.5rem] pt-[0.25rem]">
-          <button type="submit" className="text-caption rounded-[0.4rem] bg-ink px-[1rem] py-[0.5rem] font-medium text-white">
+        <div className="flex flex-wrap gap-[0.5rem] pt-[0.25rem]">
+          <button type="submit" className="text-body min-h-[44px] flex-1 rounded-[0.4rem] bg-ink px-[1rem] py-[0.5rem] font-medium text-white sm:flex-initial">
             Save Changes
           </button>
           <button
             type="button"
             onClick={() => setEditing(false)}
-            className="text-caption rounded-[0.4rem] border border-line px-[1rem] py-[0.5rem] font-medium text-muted"
+            className="text-body min-h-[44px] flex-1 rounded-[0.4rem] border border-line px-[1rem] py-[0.5rem] font-medium text-muted sm:flex-initial"
           >
             Cancel
           </button>
@@ -77,7 +88,7 @@ export function MemberRow({ member }: { member: Member }) {
   }
 
   return (
-    <div className="flex flex-col gap-[0.75rem] rounded-[0.4rem] border border-line bg-white p-[1rem] transition-colors hover:border-subtle sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-[0.75rem] rounded-[0.5rem] border border-line bg-white p-[0.875rem] sm:p-[1rem] transition-colors hover:border-subtle sm:flex-row sm:items-center sm:justify-between">
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-x-[0.625rem] gap-y-[0.375rem]">
           <p className="text-body font-semibold text-ink">{member.fullName}</p>
@@ -115,7 +126,7 @@ export function MemberRow({ member }: { member: Member }) {
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="text-caption rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-ink hover:bg-surface"
+          className="text-body min-h-[40px] flex-1 sm:flex-initial rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-ink hover:bg-surface"
         >
           Edit
         </button>
@@ -124,19 +135,24 @@ export function MemberRow({ member }: { member: Member }) {
             if (!window.confirm(`Remove ${member.fullName}?`)) return;
             setIsDeleting(true);
             try {
-              await deleteMember(formData);
+              const res = await deleteMember(formData);
+              if (!res.success) {
+                alert(res.error || "Failed to remove member");
+                setIsDeleting(false);
+              }
             } catch (err: unknown) {
               alert(err instanceof Error ? err.message : "Failed to delete");
               setIsDeleting(false);
             }
           }}
+          className="flex-1 sm:flex-initial"
         >
           <input type="hidden" name="id" value={member.id} />
           <input type="hidden" name="category" value={member.category} />
           <button
             type="submit"
             disabled={isDeleting}
-            className="text-caption rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-red-600 hover:bg-red-50 disabled:opacity-50"
+            className="text-body min-h-[40px] w-full rounded-[0.4rem] border border-line px-[0.875rem] py-[0.4rem] font-medium text-red-600 hover:bg-red-50 disabled:opacity-50"
           >
             {isDeleting ? "Removing..." : "Remove"}
           </button>
